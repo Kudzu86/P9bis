@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes Posts{% endblock %}
+
+{% block content %}
+<div class="posts-container">
+    <header>
+        <h1>Mes Posts</h1>
+    </header>
+
+    <h2>Mes Tickets</h2>
+    {% if tickets %}
+        <ul>
+            {% for ticket in tickets %}
+                <li>
+                    {% if ticket.id %} <!-- Vérifie que l'ID du ticket est présent -->
+                        <a href="{% url 'ticket_detail' ticket.id %}"> <!-- Lien vers les détails du ticket -->
+                            <h3>{{ ticket.title }}</h3>
+                        </a>
+                        <p>{{ ticket.description }}</p>
+                        <p>Posté le : {{ ticket.time_created }}</p>
+                    {% else %}
+                        <p>Ce ticket n'est pas disponible.</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun ticket publié.</p>
+    {% endif %}
+    
+
+    <h2>Mes Critiques</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    {% if review.ticket %} <!-- Vérifie que le ticket existe -->
+                        <a href="{% url 'ticket_detail' review.ticket.id %}"> <!-- Lien vers les détails de la critique -->
+                            <h3>{{ review.headline }} ({{ review.rating }} / 5)</h3>
+                        </a>
+                        <p>{{ review.body }}</p>
+                        <p>Posté le : {{ review.time_created }}</p>
+                    {% else %}
+                        <p>Critique sans ticket associé.</p> <!-- Message si le ticket n'existe pas -->
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune critique publiée.</p>
+    {% endif %}
+    
+
+    <h2>Mes Réponses</h2>
+    {% if responses %}
+        <ul>
+            {% for response in responses %}
+                <li>
+                    <a href="{% url 'ticket_detail' response.ticket.id %}"> <!-- Lien vers les détails du ticket associé -->
+                        <h3>{{ response.headline }} ({{ response.rating }} / 5)</h3>
+                    </a>
+                    <p>{{ response.body }}</p>
+                    <p>Posté le : {{ response.time_created }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune réponse publiée.</p>
+    {% endif %}
+</div>
+{% endblock %}

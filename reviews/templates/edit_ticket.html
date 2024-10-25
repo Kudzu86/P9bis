@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Modifier un Ticket{% endblock %}
+
+{% block content %}
+    <h2>Modifier le Ticket : "{{ form.instance.title }}"</h2> <!-- Affiche le titre actuel du ticket -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Affiche le formulaire sous forme de paragraphes -->
+        <button type="submit">Modifier</button>
+    </form>
+    <a href="{% url 'feed' %}">Annuler</a>  <!-- Lien pour annuler et retourner au fil -->
+{% endblock %}

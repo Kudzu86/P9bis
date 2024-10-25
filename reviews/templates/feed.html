@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Mon Flux{% endblock %}
+
+{% block content %}
+<div class="feed-container">
+    <h2>Mon Flux</h2>
+
+    <p>Bienvenue {{ user.username }} !</p>
+
+    <div class="button-group my-3">
+        <a href="{% url 'add_ticket_and_review' %}" class="btn btn-primary">Créer une Critique</a>
+        <a href="{% url 'add_ticket' %}" class="btn btn-secondary">Demander une Critique</a>
+    </div>
+
+    {% if posts %}
+        <div class="posts-list">
+            {% for post in posts %}
+                <div class="post-item mb-4">
+                    <div class="post-info">
+                        <p>Posté par : <strong>{{ post.user.username }}</strong></p>
+                        <p>Date : {{ post.time_created|date:"d M Y H:i" }}</p>
+                    </div>
+
+                    {% if post.content_type == 'TICKET' %}
+                        <div class="ticket">
+                            <h3><a href="{% url 'ticket_detail' post.id %}">{{ post.title }}</a></h3>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+                            {% endif %}
+                            <p>{{ post.description }}</p>
+                            <p><strong>Type : Demande de Critique</strong></p>
+                            <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
+                        </div>
+                    {% elif post.content_type == 'REVIEW' %}
+                        <div class="review">
+                            <h3><a href="{% url 'review_detail' post.id %}">{{ post.headline }}</a></h3>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="{{ post.headline }}" class="post-image">
+                            {% endif %}
+                            <p>{{ post.body }}</p>
+                            <p><strong>Note : {{ post.rating }} / 5</strong></p>
+                            <p><strong>Type : Critique</strong></p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun billet ou critique à afficher. Suivez plus d'utilisateurs ou créez un billet pour voir plus de contenu.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,389 @@
+/* Styles pour l'en-tête */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333; /* Couleur de fond de l'en-tête */
+    color: white; /* Couleur du texte dans l'en-tête */
+}
+
+.header-title {
+    font-size: 24px;
+    margin-left: 325px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px; /* Espace entre les liens */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 10px;
+    width: auto; /* Définit la largeur du conteneur */
+    text-align: center;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour l'ensemble du corps */
+body {
+    font-family: Arial, sans-serif; /* Définit la police de caractères */
+    margin: 0; /* Supprime la marge par défaut */
+    padding: 0; /* Supprime le remplissage par défaut */
+    background-color: #f5f5f5; /* Couleur de fond pour toute la page */
+}
+
+/* Encadrement global pour la page de connexion/inscription */
+.main-container {
+    width: 100%; /* Largeur de 100% */
+    max-width: 800px; /* Limite la largeur à 800px */
+    margin: 50px auto; /* Centre la page avec des marges en haut et en bas */
+    padding: 30px; /* Ajoute un remplissage interne */
+    background-color: #fff; /* Couleur de fond blanche */
+    border: 2px solid #ccc; /* Bord gris */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour donner un effet de carte */
+}
+
+/* Style pour le titre "LITReview" dans l'en-tête */
+header h1 {
+    font-size: 24px; /* Taille du titre */
+    text-align: center; /* Centre le titre */
+    padding: 10px; /* Ajoute un espacement vertical */
+    background-color: #333; /* Fond noir ou foncé */
+    color: white; /* Couleur du texte en blanc */
+    margin: 0; /* Pas de marge */
+    width: 100%; /* Largeur de 100% */
+    box-sizing: border-box; /* Inclut les bordures et les marges dans la largeur */
+}
+
+/* Style pour le bouton "S'inscrire" */
+.left-section {
+    float: left; /* Aligne la section à gauche */
+    width: 45%; /* Largeur de 45% pour la section gauche */
+    text-align: center; /* Centre le texte dans la section */
+    margin-top: 20px;
+}
+
+/* Style pour le bouton de connexion */
+.right-section {
+    float: right; /* Aligne la section à droite */
+    width: 45%; /* Largeur de 45% pour la section droite */
+    text-align: center; /* Centre le texte dans la section */
+}
+
+/* Style pour les boutons */
+button {
+    display: block;
+    background-color: #007bff; /* Couleur bleue pour le bouton */
+    color: white; /* Couleur du texte en blanc */
+    padding: 10px 20px; /* Ajoute un remplissage interne */
+    border: none; /* Supprime la bordure */
+    border-radius: 5px; /* Coins arrondis pour le bouton */
+    cursor: pointer; /* Change le curseur pour indiquer un élément cliquable */
+    font-size: 16px; /* Taille de la police */
+    margin: 40px auto 0 auto; /* Centre le bouton horizontalement */
+}
+
+button:hover {
+    background-color: #0056b3; /* Couleur bleue plus foncée au survol */
+}
+
+/* Style pour les titres */
+h2 {
+    font-size: 20px; /* Taille de la police pour les titres */
+    text-align: center; /* Centre le texte des titres */
+    margin: 30px;
+}
+
+/* Clearfix pour éviter les chevauchements */
+.clearfix::after {
+    content: ""; /* Crée un contenu vide */
+    display: block; /* Affiche le contenu comme un bloc */
+    clear: both; /* Efface les flottants */
+}
+
+/* Style pour chaque groupe de formulaire */
+.form-group {
+    display: flex; /* Utilise le flexbox pour le conteneur */
+    align-items: center; /* Aligne verticalement au centre */
+    margin-bottom: 15px; /* Espacement entre les groupes */
+}
+
+/* Style pour les étiquettes */
+.form-group label {
+    width: 150px; /* Largeur fixe pour l'étiquette */
+    margin-right: 10px; /* Espacement entre l'étiquette et l'input */
+}
+
+/* Style pour les inputs */
+.form-group input {
+    flex: 1; /* Laisse l'input remplir l'espace restant */
+    padding: 8px; /* Ajoute du rembourrage à l'input */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px; /* Coins arrondis */
+}
+
+
+/* Style pour les paragraphes */
+p {
+    text-align: center; /* Centre le texte dans le paragraphe */
+}
+
+span {
+    display: none; /* Cache uniquement le texte d'aide pour le nom d'utilisateur */
+}
+
+.registration-form li {
+    font-style: italic; /* Met le texte en italique */
+    font-size: 0.8em;
+}
+
+.registration-form input {
+    max-width: 375px; /* Limite la largeur des champs input */
+    width: 100%; /* Permet aux champs de s'adapter à leur conteneur jusqu'à 300px */
+}
+
+
+.registration-form {
+margin: 50px;
+}
+
+.manage-follows .form-group input {
+    max-width: 200px; /* Limite la largeur maximale à 200px */
+    width: 100%; /* Permet à l'input de s'ajuster à la largeur de son conteneur */
+    padding: 8px; /* Ajoute du rembourrage pour un meilleur confort */
+    margin: 0 auto; /* Centre l'input horizontalement */
+    display: block; /* Affiche l'input comme un bloc pour le centrage */
+    border: 1px solid #ccc; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */    
+}
+
+.manage-follows button.btn.btn.primary {
+    margin-bottom: 50px;
+}
+
+.manage-follows .followed-user {
+    display: flex; /* Utilise Flexbox */
+    justify-content: space-between; /* Espace entre le nom d'utilisateur et le bouton */
+    align-items: center; /* Aligne verticalement au centre */
+    margin-bottom: 10px; /* Espacement entre les éléments */
+}
+
+.manage-follows button.btn.btn-danger {
+    display: inline;
+    margin-left: auto; /* Pousse le bouton à droite */
+    margin: 0;
+}
+
+.manage-follows ul li {
+    display: flex; /* Utilisation du flexbox pour aligner les éléments sur la même ligne */
+    justify-content: space-between; /* Espace entre le pseudo et le bouton */
+    align-items: center; /* Alignement vertical centré */
+    margin-bottom: 10px; /* Ajoute un espace entre chaque ligne d'abonné */
+}
+
+.manage-follows ul li form {
+    margin: 0; /* Supprime la marge par défaut du formulaire */
+}
+
+.manage-follows section {
+    margin: 50px;
+}
+
+.manage-follows h2 {
+    margin: 30px;
+}
+
+.add_ticket-form {
+    margin: 50px;
+}
+
+.add_ticket-form #id_description {
+    width: 75%;
+}
+
+.add_ticket-form #id_title {
+    width: 75%;
+}
+
+/* Styles pour les boutons dans le flux */
+.button-group {
+    display: flex; /* Utilise flexbox pour un alignement horizontal */
+    justify-content: center; /* Centre les boutons horizontalement */
+    gap: 10px; /* Espace entre les boutons */
+    margin: 20px 0; /* Marge au-dessus et en dessous des boutons */
+    margin-top: 100px;
+}
+
+.button-group a.btn {
+    padding: 10px 20px; /* Ajoute de l'espace autour du texte */
+    font-size: 16px; /* Taille de la police */
+    font-weight: bold; /* Met le texte en gras */
+    color: #fff; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement */
+    border-radius: 5px; /* Bords arrondis */
+    transition: background-color 0.3s; /* Transition douce pour les changements de couleur */
+}
+
+.button-group a.btn-primary {
+    background-color: #007bff; /* Couleur de fond pour le bouton "Créer une Critique" */
+}
+
+.button-group a.btn-secondary {
+    background-color: #6c757d; /* Couleur de fond pour le bouton "Demander une Critique" */
+}
+
+/* Effet au survol */
+.button-group a.btn:hover {
+    opacity: 0.8; /* Légère transparence au survol */
+}
+
+/* Styles pour les post-items */
+.posts-list {
+    margin-top: 20px; /* Espace au-dessus de la liste des posts */
+}
+
+.post-item {
+    width: 50%; /* Définit la largeur à 50% */
+    padding: 15px; /* Espace interne autour de chaque post */
+    border: 1px solid #e0e0e0; /* Bord léger autour de chaque post */
+    border-radius: 8px; /* Coins arrondis pour les posts */
+    background-color: #f9f9f9; /* Couleur de fond légèrement grise */
+    margin: 0 auto 15px; /* Centre horizontalement avec auto pour la marge gauche et droite */
+}
+
+
+.feed-container h3 {
+    text-align: center;
+}
+
+.star-rating {
+    display: inline-block;
+    direction: rtl; /* Pour que les étoiles soient dans le bon ordre */
+    font-size: 24px;
+    unicode-bidi: bidi-override; /* Pour assurer l'affichage des étoiles de droite à gauche */
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Cacher les boutons radio */
+}
+
+.star-rating label {
+    color: rgba(95, 95, 95, 0.493);
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input[type="radio"]:checked ~ label {
+    color: gold; /* Couleur des étoiles sélectionnées ou survolées */
+}
+
+.add_review-form {
+    margin: 50px;
+}
+
+textarea {
+    height: 150px;    /* Hauteur par défaut */
+    max-width: 90%;  /* Empêche de dépasser la largeur du conteneur */
+    max-height: 300px; /* Limite la hauteur maximale si redimensionné */
+    min-width: 50%;   /* Largeur minimale pour empêcher un redimensionnement trop petit */
+    min-height: 100px; /* Hauteur minimale pour empêcher un redimensionnement trop petit */
+  }
+  
+.form-group {
+    margin-top: 50px;
+}
+
+.ticket-actions {
+    text-align: center;
+}
+
+.ticket-actions a.btn.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 40px auto 0 auto;
+    appearance: auto;
+    text-decoration: none;
+}
+
+.ticket-actions button.btn.btn-danger {
+    background-color: #b14532;
+}
+
+.ticket-detail-container .text-user {
+    margin: 70px;
+    font-size: 1.05em;
+    font-style: normal;
+}
+
+.ticket-detail-container p {
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+.ticket-detail-container h3 {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.ticket-detail-container ul {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ticket-detail-container li {
+    border: 1px solid;
+    padding: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.posts-container h3 {
+    font-size: 1.1em;
+    font-weight: 100;
+    text-align: center;
+}
+
+.posts-container h2 {
+    margin-top: 70px;
+    text-shadow: 2px 2px 2px grey; /* Déplace l'ombre du texte pour créer un effet de soulignement */
+}
+
+.posts-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.posts-container {
+    border: 1px solid;
+    padding: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.posts-container p {
+    font-size: 0.7em;
+    font-style: italic;
+}

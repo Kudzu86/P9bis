@@ -1,0 +1,22 @@
+{% extends 'base.html' %}  <!-- On utilise la base HTML existante -->
+
+{% block content %}  <!-- Début du bloc de contenu spécifique à cette page -->
+<h2>Utilisateurs que vous suivez</h2>  <!-- Titre de la page -->
+
+<ul>
+    {% for follow in followed_users %}  <!-- Boucle sur la liste des utilisateurs suivis -->
+        <li>
+            {{ follow.followed_user.username }}  <!-- Affichage du nom d'utilisateur de la personne suivie -->
+            <form action="{% url 'remove_follow' follow.id %}" method="post" style="display:inline;">  <!-- Formulaire pour supprimer la relation de suivi -->
+                {% csrf_token %}  <!-- Jeton CSRF pour protéger le formulaire contre les attaques CSRF -->
+                <button type="submit">Ne plus suivre</button>  <!-- Bouton pour soumettre la suppression -->
+            </form>
+        </li>
+    {% empty %}
+        <li>Vous ne suivez encore personne.</li>  <!-- Message affiché si l'utilisateur ne suit encore personne -->
+    {% endfor %}
+</ul>
+
+
+<a href="{% url 'add_follow' %}">Ajouter un utilisateur à suivre</a>  <!-- Lien pour ajouter un nouvel utilisateur suivi -->
+{% endblock %}

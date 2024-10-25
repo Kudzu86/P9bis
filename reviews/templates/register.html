@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+    <div class="main-container"> <!-- Conteneur principal -->
+        <header>
+            <h1>Inscription</h1> <!-- Titre centré pour l'inscription -->
+        </header>
+
+        <form method="POST" class="registration-form"> <!-- Formulaire d'inscription -->
+            {% csrf_token %} <!-- Token CSRF pour la sécurité -->
+
+            <!-- Utilisation de .form-group pour aligner les champs -->
+            {% for field in form %}
+                <div class="form-group"> <!-- Conteneur pour chaque champ -->
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label> <!-- Étiquette pour le champ -->
+                    {{ field }} <!-- Champ d'entrée -->
+
+                    <!-- Affichage des erreurs du champ -->
+                    {% if field.errors %}
+                        <div class="text-danger">
+                            <ul>
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-primary">S'inscrire</button> <!-- Bouton pour s'inscrire -->
+        </form>
+
+        <p>Déjà un compte ? <a href="{% url 'login' %}">Se connecter ici</a></p> <!-- Lien vers la page de connexion -->
+    </div>
+{% endblock %}

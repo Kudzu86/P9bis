@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Gérer les abonnements{% endblock %}
+
+{% block content %}
+    <div class="main-container manage-follows">
+        <header>
+            <h1>Gérer mes abonnements et abonnés</h1>
+        </header>
+
+        <!-- Section pour ajouter un utilisateur à suivre -->
+        <section>
+            <h2>Chercher d'autres utilisateurs</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </section>
+
+        <!-- Section pour afficher les abonnements -->
+        <section>
+            <h2>Abonnements</h2>
+            <ul>
+                {% for follow in followed_users %}
+                    <li>
+                        {{ follow.followed_user.username }}
+                        <form method="POST" action="{% url 'remove_follow' follow.id %}" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir vous désabonner de {{ follow.followed_user.username }} ?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Se désabonner</button>
+                        </form>
+                    </li>
+                {% empty %}
+                    <li>Vous ne suivez personne pour le moment.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Section pour afficher les abonnés -->
+        <section>
+            <h2>Abonnés</h2>
+            {% for follow in followers %}
+            <ul>
+                <li class="followed-user">
+                    <span>{{ follow.user.username }}</span>
+                    <form method="POST" action="{% url 'remove_follow' follow.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Se désabonner</button>
+                    </form>
+                </li>
+                {% empty %}
+                    <li>Vous n'avez pas encore d'abonnés.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+{% endblock %}

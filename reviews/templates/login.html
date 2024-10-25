@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <header>
+            <h1>Page de connexion</h1> <!-- Titre centré et plus petit -->
+        </header>
+
+        <div class="clearfix">
+            <!-- Section gauche pour le bouton "S'inscrire" -->
+            <aside class="left-section">
+                <h2>Pas encore inscrit ?</h2>
+                <a href="{% url 'register' %}">
+                    <button>S'inscrire</button>
+                </a>
+            </aside>
+
+            <!-- Section droite pour le formulaire de connexion -->
+            <aside class="right-section">
+                <h2>Se connecter</h2>
+                <form method="POST" class="login-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit">Se connecter</button>
+                </form>
+            </aside>
+        </div>
+    </div>
+{% endblock %}

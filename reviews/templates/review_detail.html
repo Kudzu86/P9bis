@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Détails de la Critique{% endblock %}
+
+{% block content %}
+    <div class="review-detail-container">
+        <h3>{{ review.headline }} - {{ review.rating }} / 5</h3>
+        <p class="text-user">{{ review.body }}</p>
+        <p>Posté par : {{ review.user.username }}</p>
+        <p>Date : {{ review.time_created }}</p>
+
+        <h3>Détails du Ticket Associé :</h3>
+        <div class="ticket-details">
+            <h4>{{ review.ticket.title }}</h4>
+            <p>{{ review.ticket.description }}</p>
+            {% if review.ticket.image %}
+                <img src="{{ review.ticket.image.url }}" alt="Image du ticket" class="img-fluid">
+            {% endif %}
+            <p>Posté par : {{ review.ticket.user.username }}</p>
+            <p>Date : {{ review.ticket.time_created }}</p>
+        </div>
+
+        <a href="{% url 'ticket_detail' ticket.id %}">Voir le Ticket</a>
+        <p><a href="{% url 'posts' %}">Retour aux posts</a></p>
+    </div>
+{% endblock %}

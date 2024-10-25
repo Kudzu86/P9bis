@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">  <!-- Lien vers votre fichier CSS -->
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="header-title">LITReview</h1>
+            <nav class="nav-links">
+                <a href="{% url 'feed' %}">Flux</a>
+                <a href="{% url 'posts' %}">Posts</a>
+                <a href="{% url 'manage_follows' %}">Abonnements</a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a>
+
+                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                    {% csrf_token %}
+                </form>
+
+                
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% if messages %}
+            <section class="messages">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
