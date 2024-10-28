@@ -1,13 +1,38 @@
-{% extends 'base.html' %}  <!-- Hérite du template de base -->
+{% extends 'base.html' %}
 
-{% block content %}  <!-- Début du bloc de contenu -->
-    <h2>Modifier le commentaire</h2>  <!-- Titre de la page -->
+{% block title %}Modifier la Critique{% endblock %}
 
-    <!-- Formulaire pour modifier un commentaire -->
-    <form method="post">
-        {% csrf_token %}  <!-- Protection CSRF pour sécuriser le formulaire -->
-        {{ form.as_p }}  <!-- Affiche le formulaire avec les champs dans des paragraphes -->
-        <button type="submit">Modifier</button>  <!-- Bouton pour soumettre les modifications -->
+{% block content %}
+<div class="main-container">
+    <header>
+        <h1>Modifier la Critique</h1>
+    </header>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="headline">Titre de la Critique :</label>
+            <input type="text" name="headline" id="headline" class="form-control" value="{{ review.headline }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_review_rating">Note (sur 5)</label>
+            <div class="star-rating">
+                {% for i in "54321" %}
+                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required {% if review.rating == i %}checked{% endif %}>
+                    <label for="star{{ i }}">★</label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="body">Votre Critique :</label>
+            <textarea name="body" id="body" class="form-control" required>{{ review.body }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sauvegarder les Modifications</button>
     </form>
 
-{% endblock %}  <!-- Fin du bloc de contenu -->
+    <p><a href="{% url 'ticket_detail' review.ticket.id %}">Annuler</a></p>
+</div>
+{% endblock %}

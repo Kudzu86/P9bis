@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Détails de la Réponse{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <header>
+        <h1>Détails de la Réponse</h1>
+    </header>
+
+    <div class="ticket">
+        <h2>{{ ticket.title }}</h2>
+        <p><strong>Posté par : </strong>{{ ticket.user.username }}</p>
+        <p><strong>Date : </strong>{{ ticket.time_created|date:"d M Y H:i" }}</p>
+        <p>{{ ticket.description }}</p>
+        {% if ticket.image %}
+            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}" class="ticket-image">
+        {% endif %}
+    </div>
+
+    <div class="review">
+        <h3>Votre Critique :</h3>
+        <p><strong>Titre : </strong>{{ review.headline }}</p>
+        <p><strong>Note : </strong>{{ review.rating }} / 5</p>
+        <p>{{ review.body }}</p>
+        <p><strong>Posté par : </strong>{{ review.user.username }}</p>
+        <p><strong>Date : </strong>{{ review.time_created|date:"d M Y H:i" }}</p>
+    </div>
+
+    <p><a href="{% url 'feed' %}">Retour au Flux</a></p>
+</div>
+{% endblock %}

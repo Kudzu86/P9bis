@@ -13,14 +13,17 @@
         <div class="ticket-details">
             <h4>{{ review.ticket.title }}</h4>
             <p>{{ review.ticket.description }}</p>
+            <!-- Vérification et affichage de l'image -->
             {% if review.ticket.image %}
-                <img src="{{ review.ticket.image.url }}" alt="Image du ticket" class="img-fluid">
+                <img src="{{ review.ticket.image.url }}" alt="Image du ticket" style="max-width: 100%; height: auto;">
+            {% else %}
+                <p>Aucune image associée.</p>
             {% endif %}
             <p>Posté par : {{ review.ticket.user.username }}</p>
             <p>Date : {{ review.ticket.time_created }}</p>
         </div>
 
         <a href="{% url 'ticket_detail' ticket.id %}">Voir le Ticket</a>
-        <p><a href="{% url 'posts' %}">Retour aux posts</a></p>
+        <p><a href="{% url 'posts' %}">Voir tous mes posts</a></p>
     </div>
 {% endblock %}

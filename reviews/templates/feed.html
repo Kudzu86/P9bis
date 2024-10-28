@@ -8,6 +8,34 @@
 
     <p>Bienvenue {{ user.username }} !</p>
 
+    <!-- Formulaire de filtrage avec case à cocher pour afficher/masquer les contenus de l’utilisateur -->
+    <form method="get" class="filter-form" id="filter-form">
+        <label>
+            <input type="checkbox" name="show_user_posts" value="on" {% if show_user_posts %}checked{% endif %} onchange="toggleShowUserPosts(this);">
+            Afficher mes propres demandes et critiques
+        </label>
+    </form>
+    
+    <script>
+        function toggleShowUserPosts(checkbox) {
+            const form = document.getElementById('filter-form');
+            const params = new URLSearchParams(new FormData(form));
+            
+            if (checkbox.checked) {
+                // Si la case est cochée, ajouter le paramètre
+                params.set('show_user_posts', 'on');
+            } else {
+                // Si la case est décochée, supprimer le paramètre
+                params.delete('show_user_posts');
+            }
+            
+            // Mettre à jour l'URL sans recharger la page
+            window.location.search = params.toString();
+        }
+    </script>
+    
+    
+
     <div class="button-group my-3">
         <a href="{% url 'add_ticket_and_review' %}" class="btn btn-primary">Créer une Critique</a>
         <a href="{% url 'add_ticket' %}" class="btn btn-secondary">Demander une Critique</a>
@@ -30,7 +58,9 @@
                             {% endif %}
                             <p>{{ post.description }}</p>
                             <p><strong>Type : Demande de Critique</strong></p>
-                            <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
+                            {% if user.id != post.user.id %}
+                                <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
+                            {% endif %}
                         </div>
                     {% elif post.content_type == 'REVIEW' %}
                         <div class="review">

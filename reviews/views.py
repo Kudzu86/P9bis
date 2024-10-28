@@ -6,11 +6,10 @@ from django.contrib.auth.forms import AuthenticationForm  # Importation du formu
 from django.contrib import messages  # Importation du module pour les messages flash
 from .forms import CustomUserCreationForm, TicketForm, ReviewForm # Importation du formulaire personnalisé pour l'inscription des utilisateurs
 from itertools import chain
-from django.db.models import CharField, Value
+from django.db.models import CharField, Value, Q
 from django.db import models
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-import uuid
 
 
 
@@ -56,16 +55,21 @@ def get_users_viewable_tickets(user):
 def feed(request):
     user = request.user
 
+    # Récupérer les utilisateurs suivis par l'utilisateur
     followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
+
+    # Vérifier si la case pour afficher les posts de l'utilisateur est cochée
+    show_user_posts = request.GET.get('show_user_posts', 'off') == 'on'
+    
 
     # Récupérer les tickets qui ne sont pas des réponses
     tickets = Ticket.objects.filter(
-        (models.Q(user=user) | models.Q(user__in=followed_users)) & models.Q(is_response=False)
+        (Q(user=user) | Q(user__in=followed_users)) & Q(is_response=False)
     ).annotate(content_type=Value('TICKET', CharField()))
 
     # Récupérer toutes les critiques, y compris celles associées aux tickets répondus
     reviews = Review.objects.filter(
-        models.Q(user=user) | models.Q(user__in=followed_users)
+        Q(user=user) | Q(user__in=followed_users)
     ).annotate(content_type=Value('REVIEW', CharField()))
 
     # Récupérer les critiques sur les tickets de l'utilisateur
@@ -76,6 +80,10 @@ def feed(request):
     # Combiner les posts tout en éliminant les doublons
     combined_posts = list(chain(tickets, reviews, reviews_on_user_tickets))
 
+    # Filtrer les posts en fonction de la case à cocher
+    if not show_user_posts:
+        combined_posts = [post for post in combined_posts if post.user != user]
+
     seen = set()
     unique_posts = []
     for post in combined_posts:
@@ -83,13 +91,15 @@ def feed(request):
             unique_posts.append(post)
             seen.add(post.id)
 
+    # Trier les posts par date de création
     posts = sorted(
         unique_posts,
         key=lambda post: post.time_created,
         reverse=True
     )
 
-    return render(request, 'feed.html', {'posts': posts})
+    # Passer la valeur de show_user_posts au template
+    return render(request, 'feed.html', {'posts': posts, 'show_user_posts': show_user_posts})
 
 
 
@@ -118,7 +128,7 @@ def login_view(request):
 @login_required
 def add_ticket(request):
     if request.method == 'POST':  
-        form = TicketForm(request.POST)
+        form = TicketForm(request.POST, request.FILES)
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
@@ -166,23 +176,34 @@ def delete_ticket(request, ticket_id):
 
 @login_required
 def ticket_detail(request, ticket_id):
-    ticket = get_object_or_404(Ticket, id=ticket_id)  # Récupérer le ticket ou renvoyer 404 si non trouvé
-    reviews = ticket.review_set.all()  # Récupérer toutes les critiques liées à ce ticket
-    return render(request, 'ticket_detail.html', {'ticket': ticket, 'reviews': reviews})
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    reviews = Review.objects.filter(ticket=ticket).order_by('-time_created')  # Récupérer les critiques du ticket
+
+    # Vérifier si l'utilisateur a déjà soumis une critique pour ce ticket
+    user_review = reviews.filter(user=request.user).first()
+
+    return render(request, 'ticket_detail.html', {
+        'ticket': ticket,
+        'reviews': reviews,
+        'user_review': user_review,  # Passer la critique de l'utilisateur
+    })
+
 
 @login_required
 def add_review(request):
     if request.method == "POST":
         ticket_id = request.POST.get('ticket_id')  # ID du ticket auquel on veut répondre
-        
-        # Vérifier l'existence du ticket
-        ticket = Ticket.objects.filter(id=ticket_id).first()
-        if not ticket:
+
+        # Vérifier si l'ID du ticket est vide
+        if not ticket_id:
             return render(request, 'add_review.html', {
-                'error': 'Le ticket auquel vous souhaitez répondre n\'existe pas.',
-                'ticket_id': ticket_id
+                'error': 'Aucun ID de ticket fourni.',
+                'ticket_id': ticket_id  # Cela devrait rester vide ici
             })
-        
+
+        # Vérifier l'existence du ticket
+        ticket = get_object_or_404(Ticket, id=ticket_id)
+
         # Récupérer les données du formulaire
         rating = request.POST.get('rating')
         headline = request.POST.get('headline')
@@ -192,7 +213,7 @@ def add_review(request):
         if not headline or not rating:
             return render(request, 'add_review.html', {
                 'error': 'Le titre et la note sont obligatoires.',
-                'ticket_id': ticket_id
+                'ticket_id': ticket_id  # Conserve l'ID ici
             })
 
         # Créer la review en associant le ticket récupéré
@@ -206,16 +227,19 @@ def add_review(request):
         
         review.save()  # Enregistrer la critique
 
-        # Redirection vers le détail du ticket ou le feed
-        return redirect('ticket_detail', ticket_id=ticket_id) if ticket_id else redirect('feed')
+        # Redirection vers le détail du ticket après soumission
+        return redirect('ticket_detail', ticket_id=ticket_id)
 
-    return render(request, 'add_review.html')
+    # Si la méthode n'est pas POST, essaye de récupérer le ticket_id de l'URL
+    ticket_id = request.GET.get('ticket_id')
+    return render(request, 'add_review.html', {'ticket_id': ticket_id})
+
 
 
 @login_required
 def add_ticket_and_review(request):
     if request.method == 'POST':
-        ticket_form = TicketForm(request.POST)
+        ticket_form = TicketForm(request.POST, request.FILES)
         review_form = ReviewForm(request.POST)
 
         if ticket_form.is_valid():
@@ -261,7 +285,8 @@ def edit_review(request, review_id):
         review.save()
 
         # Redirection vers une page de confirmation ou de liste des reviews
-        return HttpResponseRedirect(reverse('reviews:index'))
+        return redirect('ticket_detail', ticket_id=review.ticket.id)  # Redirige vers la vue de détail du ticket associé
+
 
     # Affiche un formulaire pré-rempli avec les données actuelles de l'avis
     return render(request, 'edit_review.html', {'review': review})
@@ -277,7 +302,7 @@ def delete_review(request, review_id):
         review.delete()
 
         # Redirection vers la liste des avis après la suppression
-        return HttpResponseRedirect(reverse('reviews:index'))
+        return HttpResponseRedirect(reverse('feed'))
 
     # Si la méthode est GET, affiche une page de confirmation de suppression
     return render(request, 'delete_review.html', {'review': review})
@@ -335,11 +360,11 @@ def user_posts(request):
         return redirect('login')  # Redirection si l'utilisateur n'est pas connecté
 
     # Récupérer les tickets, reviews et réponses de l'utilisateur connecté
-    tickets = Ticket.objects.filter(user=request.user)
-    reviews = Review.objects.filter(user=request.user)
+    tickets = Ticket.objects.filter(user=request.user, is_response=False)
+    reviews = Review.objects.filter(user=request.user, ticket__user=request.user)
 
     # Filtrer les réponses basées sur les critiques
-    responses = Review.objects.filter(ticket__user=request.user)
+    responses = Review.objects.filter(user=request.user).exclude(ticket__user=request.user)
 
     return render(request, 'posts.html', {
         'tickets': tickets,
@@ -359,7 +384,7 @@ def review_detail(request, review_id):
     return render(request, 'review_detail.html', {'review': review, 'ticket': ticket})
 
 
-def ticket_response(request, ticket_id):
+def response_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
 
     if request.method == "POST":
@@ -368,10 +393,20 @@ def ticket_response(request, ticket_id):
             review = form.save(commit=False)
             review.ticket = ticket
             review.user = request.user  # Associer la critique à l'utilisateur connecté
-            review.review_id = review.generate_review_id()  # Générer l'ID de la critique
             review.save()  # Sauvegarder la critique
             return redirect('ticket_detail', ticket_id=ticket.id)  # Redirection vers le détail du ticket
     else:
         form = ReviewForm()
 
     return render(request, 'response_ticket.html', {'ticket': ticket, 'form': form})
+
+@login_required
+def response_detail(request, review_id):
+    # Récupérer la critique par ID
+    review = get_object_or_404(Review, id=review_id)
+    ticket = review.ticket  # Récupérer le ticket associé
+
+    return render(request, 'response_detail.html', {
+        'review': review,
+        'ticket': ticket
+    })

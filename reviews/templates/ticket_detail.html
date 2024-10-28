@@ -3,42 +3,48 @@
 {% block title %}Détails du Ticket{% endblock %}
 
 {% block content %}
-    <div class="ticket-detail-container">
-        <h3>{{ ticket.title }}</h3>
-        <p class="text-user">{{ ticket.description }}</p>
-        <p>Posté par : {{ ticket.user.username }}</p>
-        <p>Date : {{ ticket.time_created }}</p>
-
-        {% if user == ticket.user %}
-            <div class="ticket-actions">
-                <!-- Lien stylisé en bouton pour modifier le ticket -->
-                <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-primary" role="button">Modifier</a>
-
-                <!-- Bouton pour supprimer le ticket -->
-                <form action="{% url 'delete_ticket' ticket.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </form>
-            </div>
-        {% else %}
-            <!-- Bouton "Répondre" pour répondre à une demande de critique (en vert) -->
-            <a href="{% url 'ticket_response' ticket.id %}" class="btn btn-success">Répondre</a>
+<div class="main-container">
+    <header>
+        <h1>{{ ticket.title }}</h1>
+        <p><strong>Posté par :</strong> {{ ticket.user.username }}</p>
+        <p><strong>Date :</strong> {{ ticket.time_created|date:"d M Y H:i" }}</p>
+        <p>{{ ticket.description }}</p>
+        {% if ticket.image %}
+            <img src="{{ ticket.image.url }}" alt="Image de {{ ticket.title }}" class="ticket-image">
         {% endif %}
+    </header>
 
-        <h3>Critiques :</h3>
-        {% if reviews %}
-            <ul>
+    <h2>Critiques</h2>
+    {% if reviews %}
+        <div class="reviews-list">
             {% for review in reviews %}
-                <li>
-                    <h4>{{ review.headline }} - {{ review.rating }} / 5</h4>
-                    <p class="text-user">{{ review.body }}</p>
-                    <p>Posté par : {{ review.user.username }}</p>
-                    <p>Date : {{ review.time_created }}</p>
-                </li>
+                <div class="review">
+                    <h3>{{ review.headline }}</h3>
+                    <p><strong>Note :</strong> {{ review.rating }} / 5</p>
+                    <p>{{ review.body }}</p>
+                    <p><strong>Posté par :</strong> {{ review.user.username }}</p>
+                    <p><strong>Date :</strong> {{ review.time_created|date:"d M Y H:i" }}</p>
+
+                    {% if review.user == request.user %}
+                        <div class="review-actions">
+                            <a href="{% url 'edit_review' review.id %}" class="btn btn-warning">Modifier</a>
+                            <form action="{% url 'delete_review' review.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
             {% endfor %}
-            </ul>
-        {% else %}
-            <p>Aucune critique pour ce ticket.</p>
-        {% endif %}
-    </div>
+        </div>
+    {% else %}
+        <p>Aucune critique pour ce ticket.</p>
+    {% endif %}
+
+    {% if not user_review %}
+        <p><a href="{% url 'add_review' %}?ticket_id={{ ticket.id }}" class="btn btn-primary">Ajouter une Critique</a></p>
+    {% endif %}
+    
+    <p><a href="{% url 'feed' %}">Retour au Flux</a></p>
+</div>
 {% endblock %}

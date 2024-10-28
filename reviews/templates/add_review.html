@@ -8,7 +8,7 @@
         <h1>Répondre à une Demande de Critique</h1>
     </header>
 
-    <form method="POST" class="add_review-form">
+    <form method="POST" class="add_review-form" enctype="multipart/form-data">
         {% csrf_token %}
 
         <!-- Champ caché pour transmettre l'ID du ticket -->
