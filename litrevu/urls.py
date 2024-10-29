@@ -30,7 +30,6 @@ urlpatterns = [
     path('ticket/<int:ticket_id>/', views.ticket_detail, name='ticket_detail'),  # Route pour afficher le détail d'un ticket
     path('ticket/<int:ticket_id>/response/', views.response_ticket, name='response_ticket'),  # Route pour répondre à un ticket
     path('posts/', views.user_posts, name='posts'),  # Route pour afficher les posts d'un utilisateur
-    path('review/<int:review_id>/', views.review_detail, name='review_detail'),  # Route pour afficher le détail d'une critique
     path('add_ticket_and_review/', views.add_ticket_and_review, name='add_ticket_and_review'),
 ]
 

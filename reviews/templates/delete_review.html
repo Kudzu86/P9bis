@@ -1,13 +1,15 @@
-{% extends 'base.html' %}  <!-- Hérite du template de base -->
+{% extends 'base.html' %}
 
-{% block content %}  <!-- Début du bloc de contenu -->
-    <h2>Supprimer le commentaire</h2>  <!-- Titre de la page -->
-    <p>Êtes-vous sûr de vouloir supprimer ce commentaire ?</p>  <!-- Message de confirmation -->
+{% block content %}
+    <h2>Supprimer la Critique</h2>
+    
+    {% if ticket and ticket.user == request.user %}
+        <p>Êtes-vous sûr de vouloir supprimer cette critique <strong>et le ticket associé</strong> ? Cette action est irréversible.</p>
+    {% else %}
+        <p>Êtes-vous sûr de vouloir supprimer cette critique ?</p>
+    {% endif %}
 
-    <!-- Formulaire de confirmation de suppression -->
     <form method="post">
-        {% csrf_token %}  <!-- Protection CSRF pour sécuriser le formulaire -->
-        <button type="submit">Confirmer</button>  <!-- Bouton pour confirmer la suppression -->
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmer la Suppression</button>
     </form>
-
-{% endblock %}  <!-- Fin du bloc de contenu -->

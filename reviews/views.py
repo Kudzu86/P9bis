@@ -76,7 +76,7 @@ def feed(request):
     for review in reviews:
         # Vérifier si la critique est associée à un ticket et si l'auteur du ticket est différent de l'utilisateur connecté
         review.is_response = review.ticket is not None and review.ticket.user != request.user
-
+        review.is_reply = review.ticket is not None and review.user != review.ticket.user if review.ticket else False
 
     # Récupérer les critiques sur les tickets de l'utilisateur
     reviews_on_user_tickets = Review.objects.filter(
@@ -188,6 +188,10 @@ def ticket_detail(request, ticket_id):
     # Vérifier si l'utilisateur a déjà soumis une critique pour ce ticket
     user_review = reviews.filter(user=request.user).first()
 
+    for review in reviews:
+        # Vérifiez si la critique est une réponse à une critique autonome
+        review.is_reply = review.ticket is not None and review.user != review.ticket.user
+
     return render(request, 'ticket_detail.html', {
         'ticket': ticket,
         'reviews': reviews,
@@ -280,38 +284,61 @@ def add_ticket_and_review(request):
 def edit_review(request, review_id):
     # Récupère l'avis spécifique ou renvoie une erreur 404 si l'avis n'existe pas
     review = get_object_or_404(Review, id=review_id)
+    ticket = review.ticket  # On récupère le ticket lié à l'avis
+
+    # Vérifie si l'utilisateur connecté est le créateur du ticket et de l'avis
+    is_creator = review.user == request.user and ticket.user == request.user
 
     if request.method == 'POST':  # Si le formulaire est soumis
         # Mise à jour des champs de l'avis avec les nouvelles données du formulaire
         review.headline = request.POST.get('headline')
         review.body = request.POST.get('body')
         review.rating = request.POST.get('rating')
+        review.save()  # Sauvegarde de la critique
 
-        # Sauvegarde des modifications dans la base de données
-        review.save()
+        # Mise à jour des champs du ticket si l'utilisateur est le créateur
+        if is_creator:
+            ticket.title = request.POST.get('title', ticket.title)
+            ticket.description = request.POST.get('description', ticket.description)
+            if 'image' in request.FILES:
+                ticket.image = request.FILES['image']
+            ticket.save()  # Sauvegarde des modifications du ticket
 
-        # Redirection vers une page de confirmation ou de liste des reviews
-        return redirect('ticket_detail', ticket_id=review.ticket.id)  # Redirige vers la vue de détail du ticket associé
+        # Redirection vers la vue de détail du ticket associé
+        return redirect('ticket_detail', ticket_id=ticket.id)
 
+    # Affiche un formulaire pré-rempli avec les données actuelles de l'avis et du ticket si l'utilisateur est le créateur
+    context = {
+        'review': review,
+        'ticket': ticket if is_creator else None  # On inclut le ticket dans le contexte si l'utilisateur est le créateur
+    }
+    return render(request, 'edit_review.html', context)
 
-    # Affiche un formulaire pré-rempli avec les données actuelles de l'avis
-    return render(request, 'edit_review.html', {'review': review})
 
 # Suppression d'un avis
 @login_required
 def delete_review(request, review_id):
     # Récupère l'avis spécifique ou renvoie une erreur 404 si l'avis n'existe pas
     review = get_object_or_404(Review, id=review_id)
+    ticket = review.ticket  # On récupère le ticket lié à l'avis
+
+    # Vérifie si l'utilisateur connecté est le créateur du ticket et de l'avis
+    is_creator = review.user == request.user and ticket.user == request.user
 
     if request.method == 'POST':  # Si la requête est une soumission de formulaire (POST)
         # Supprime l'avis de la base de données
         review.delete()
 
-        # Redirection vers la liste des avis après la suppression
-        return HttpResponseRedirect(reverse('feed'))
+        # Si l'utilisateur est aussi le créateur du ticket, on le supprime également
+        if is_creator:
+            ticket.delete()
+
+        # Redirection vers le flux ou autre page pertinente après suppression
+        return redirect('feed')
 
     # Si la méthode est GET, affiche une page de confirmation de suppression
-    return render(request, 'delete_review.html', {'review': review})
+    return render(request, 'delete_review.html', {'review': review, 'ticket': ticket if is_creator else None})
+
 
 
 @login_required
@@ -377,17 +404,6 @@ def user_posts(request):
         'reviews': reviews,
         'responses': responses,
     })
-
-
-def review_detail(request, review_id):
-    # Récupérer la critique en utilisant son ID
-    review = get_object_or_404(Review, id=review_id)
-    
-    # Récupérer le ticket associé à cette critique
-    ticket = review.ticket  # Supposons que Review a une relation ForeignKey vers Ticket
-
-    # Rendre le template avec la critique et le ticket
-    return render(request, 'review_detail.html', {'review': review, 'ticket': ticket})
 
 
 def response_ticket(request, ticket_id):

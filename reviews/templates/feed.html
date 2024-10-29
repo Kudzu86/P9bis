@@ -8,7 +8,6 @@
 
     <p>Bienvenue {{ user.username }} !</p>
 
-    <!-- Formulaire de filtrage avec case à cocher pour afficher/masquer les contenus de l’utilisateur -->
     <form method="get" class="filter-form" id="filter-form">
         <label>
             <input type="checkbox" name="show_user_posts" value="on" {% if show_user_posts %}checked{% endif %} onchange="toggleShowUserPosts(this);">
@@ -20,22 +19,15 @@
         function toggleShowUserPosts(checkbox) {
             const form = document.getElementById('filter-form');
             const params = new URLSearchParams(new FormData(form));
-            
             if (checkbox.checked) {
-                // Si la case est cochée, ajouter le paramètre
                 params.set('show_user_posts', 'on');
             } else {
-                // Si la case est décochée, supprimer le paramètre
                 params.delete('show_user_posts');
             }
-            
-            // Mettre à jour l'URL sans recharger la page
             window.location.search = params.toString();
         }
     </script>
     
-    
-
     <div class="button-group my-3">
         <a href="{% url 'add_ticket_and_review' %}" class="btn btn-primary">Créer une Critique</a>
         <a href="{% url 'add_ticket' %}" class="btn btn-secondary">Demander une Critique</a>
@@ -64,14 +56,19 @@
                         </div>
                     {% elif post.content_type == 'REVIEW' %}
                         <div class="review">
-                            <h3><a href="{% url 'review_detail' post.id %}">{{ post.headline }}</a></h3>
+                            <h3><a href="{% url 'ticket_detail' post.ticket.id %}">{{ post.headline }}</a></h3>
                             {% if post.image %}
                                 <img src="{{ post.image.url }}" alt="{{ post.headline }}" class="post-image">
                             {% endif %}
-                                <p>{{ post.body }}</p>
-                                <p><strong>Note : {{ post.rating }} / 5</strong></p>
+                            <p>{{ post.body }}</p>
+                            <p><strong>Note : {{ post.rating }} / 5</strong></p>
+
+                            <!-- Affichage du type de critique -->
+
                             {% if post.is_response %}
                                 <p><strong>Type : Réponse à une demande de Critique</strong></p>
+                            {% elif post.is_reply %}
+                                <p><strong>Type : Répondre à une Critique</strong></p>
                             {% else %}
                                 <p><strong>Type : Critique</strong></p>
                             {% endif %}

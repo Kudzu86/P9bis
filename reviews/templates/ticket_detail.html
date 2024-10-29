@@ -14,7 +14,8 @@
         {% endif %}
     </header>
 
-    {% if ticket.user == request.user %}  <!-- Vérifie si l'utilisateur connecté est l'auteur du ticket -->
+    {# Affiche les boutons du ticket uniquement si l'utilisateur est l'auteur du ticket et non de la critique associée #}
+    {% if ticket.user == request.user and not user_review %}
         <div class="ticket-actions">
             <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-warning">Modifier</a>
             <form action="{% url 'delete_ticket' ticket.id %}" method="POST" style="display:inline;">
@@ -34,7 +35,12 @@
                     <p>{{ review.body }}</p>
                     <p><strong>Posté par :</strong> {{ review.user.username }}</p>
                     <p><strong>Date :</strong> {{ review.time_created|date:"d M Y H:i" }}</p>
-
+                    {% if review.is_reply %}
+                        <p><strong>Type :</strong> Réponse à une Critique</p>
+                    {% else %}
+                        <p><strong>Type :</strong> Critique</p>
+                    {% endif %}
+                    {# Si l'utilisateur est l'auteur de la critique, affiche les actions #}
                     {% if review.user == request.user %}
                         <div class="review-actions">
                             <a href="{% url 'edit_review' review.id %}" class="btn btn-warning">Modifier</a>
@@ -52,7 +58,7 @@
     {% endif %}
 
     {# Vérification pour afficher le bouton "Ajouter une Critique" #}
-    {% if ticket.user != request.user and not user_review %}  <!-- Vérifie si l'utilisateur connecté est différent de l'auteur du ticket et n'a pas laissé de critique -->
+    {% if ticket.user != request.user and not user_review %}
         <p><a href="{% url 'add_review' %}?ticket_id={{ ticket.id }}" class="btn btn-primary">Ajouter une Critique</a></p>
     {% endif %}
     
