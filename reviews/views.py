@@ -72,6 +72,12 @@ def feed(request):
         Q(user=user) | Q(user__in=followed_users)
     ).annotate(content_type=Value('REVIEW', CharField()))
 
+# Ajouter l'attribut is_response pour chaque critique
+    for review in reviews:
+        # Vérifier si la critique est associée à un ticket et si l'auteur du ticket est différent de l'utilisateur connecté
+        review.is_response = review.ticket is not None and review.ticket.user != request.user
+
+
     # Récupérer les critiques sur les tickets de l'utilisateur
     reviews_on_user_tickets = Review.objects.filter(
         ticket__user=user

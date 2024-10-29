@@ -387,3 +387,20 @@ textarea {
     font-size: 0.7em;
     font-style: italic;
 }
+
+.header-title a {
+    text-decoration: none; /* Enlève le soulignement */
+    color: white; /* Définit la couleur du texte à blanc */
+}
+
+.header-title a:hover {
+    color: white; /* Reste blanc au survol */
+}
+
+.header-title a:visited {
+    color: white; /* Reste blanc après visite */
+}
+
+.header-title a:active {
+    color: white; /* Reste blanc lorsqu'il est cliqué */
+}

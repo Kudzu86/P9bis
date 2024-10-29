@@ -14,6 +14,16 @@
         {% endif %}
     </header>
 
+    {% if ticket.user == request.user %}  <!-- Vérifie si l'utilisateur connecté est l'auteur du ticket -->
+        <div class="ticket-actions">
+            <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-warning">Modifier</a>
+            <form action="{% url 'delete_ticket' ticket.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+    {% endif %}
+
     <h2>Critiques</h2>
     {% if reviews %}
         <div class="reviews-list">
@@ -41,10 +51,12 @@
         <p>Aucune critique pour ce ticket.</p>
     {% endif %}
 
-    {% if not user_review %}
+    {# Vérification pour afficher le bouton "Ajouter une Critique" #}
+    {% if ticket.user != request.user and not user_review %}  <!-- Vérifie si l'utilisateur connecté est différent de l'auteur du ticket et n'a pas laissé de critique -->
         <p><a href="{% url 'add_review' %}?ticket_id={{ ticket.id }}" class="btn btn-primary">Ajouter une Critique</a></p>
     {% endif %}
     
     <p><a href="{% url 'feed' %}">Retour au Flux</a></p>
+    <p><a href="{% url 'posts' %}">Retour à mes Posts</a></p>  <!-- Lien ajouté ici -->
 </div>
 {% endblock %}

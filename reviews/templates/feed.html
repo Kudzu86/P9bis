@@ -68,9 +68,13 @@
                             {% if post.image %}
                                 <img src="{{ post.image.url }}" alt="{{ post.headline }}" class="post-image">
                             {% endif %}
-                            <p>{{ post.body }}</p>
-                            <p><strong>Note : {{ post.rating }} / 5</strong></p>
-                            <p><strong>Type : Critique</strong></p>
+                                <p>{{ post.body }}</p>
+                                <p><strong>Note : {{ post.rating }} / 5</strong></p>
+                            {% if post.is_response %}
+                                <p><strong>Type : Réponse à une demande de Critique</strong></p>
+                            {% else %}
+                                <p><strong>Type : Critique</strong></p>
+                            {% endif %}
                         </div>
                     {% endif %}
                 </div>
