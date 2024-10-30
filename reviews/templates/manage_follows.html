@@ -41,19 +41,18 @@
         <!-- Section pour afficher les abonnés -->
         <section>
             <h2>Abonnés</h2>
-            {% for follow in followers %}
             <ul>
-                <li class="followed-user">
-                    <span>{{ follow.user.username }}</span>
-                    <form method="POST" action="{% url 'remove_follow' follow.id %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Se désabonner</button>
-                    </form>
-                </li>
-                {% empty %}
+                {% if followers %}
+                    {% for follow in followers %}
+                        <li class="followed-user">
+                            <span>{{ follow.user.username }}</span>
+                        </li>
+                    {% endfor %}
+                {% else %}
                     <li>Vous n'avez pas encore d'abonnés.</li>
-                {% endfor %}
+                {% endif %}
             </ul>
         </section>
+
     </div>
 {% endblock %}

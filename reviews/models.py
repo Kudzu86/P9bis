@@ -29,7 +29,7 @@ class Ticket(models.Model):
         return self.title
 
 class Review(models.Model):
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)  # Permettre un ticket null
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(  # Champ pour la note, un entier positif
         # valide que la note doit être entre 0 et 5
         validators=[MinValueValidator(0), MaxValueValidator(5)])  # Validateurs pour limiter les valeurs

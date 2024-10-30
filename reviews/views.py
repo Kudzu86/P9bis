@@ -76,6 +76,9 @@ def feed(request):
     for review in reviews:
         # Vérifier si la critique est associée à un ticket et si l'auteur du ticket est différent de l'utilisateur connecté
         review.is_response = review.ticket is not None and review.ticket.user != request.user
+        # Définir l'attribut is_reply en vérifiant si la critique est liée à un ticket
+        # et si l'auteur de la critique est différent de l'auteur du ticket. 
+        # Si aucun ticket n'est lié, l'attribut is_reply sera défini sur False.
         review.is_reply = review.ticket is not None and review.user != review.ticket.user if review.ticket else False
 
     # Récupérer les critiques sur les tickets de l'utilisateur
@@ -363,17 +366,21 @@ def manage_follows(request):
         return redirect('manage_follows')  # Redirige pour éviter la soumission multiple
 
     # Récupérer les abonnements (utilisateurs suivis par l'utilisateur connecté)
-    followed_users = UserFollows.objects.filter(user=request.user)
-    
+    followed_users = UserFollows.objects.filter(user=request.user).select_related('followed_user')
+
     # Récupérer les abonnés (utilisateurs qui suivent l'utilisateur connecté)
-    followers = UserFollows.objects.filter(followed_user=request.user)
+    followers = UserFollows.objects.filter(followed_user=request.user).select_related('user')
+    print("ici")
+    print(followers)
 
     context = {
-        'followed_users': followed_users,  # Utilisateurs suivis par l'utilisateur connecté
-        'followers': followers,  # Abonnés de l'utilisateur connecté
+        'followed_users': followed_users,
+        'followers': followers,
     }
     
     return render(request, 'manage_follows.html', context)
+
+
     
 @login_required
 def remove_follow(request, follow_id):

@@ -64,14 +64,30 @@
                             <p><strong>Note : {{ post.rating }} / 5</strong></p>
 
                             <!-- Affichage du type de critique -->
+                            {% if post.ticket.user == user and post.user != user %}
+                                <p><strong>Type : Réponse à ma demande de Critique</strong></p>
 
-                            {% if post.is_response %}
+                            {% elif post.ticket.user != user and post.user == user %}
+                                <p><strong>Type : Ma réponse à une demande de Critique</strong></p>
+
+                            {% elif post.ticket.user != user and post.user != user and post.ticket.user != post.user %}
                                 <p><strong>Type : Réponse à une demande de Critique</strong></p>
-                            {% elif post.is_reply %}
-                                <p><strong>Type : Répondre à une Critique</strong></p>
-                            {% else %}
+
+                            {% elif post.ticket.user == user and post.user == user %}
+                                <p><strong>Type : Ma Critique</strong></p>
+
+                            {% elif post.ticket.user != user and post.user != user %}
                                 <p><strong>Type : Critique</strong></p>
+
+                            {% elif post.ticket.user == user and post.user != user %}
+                                <p><strong>Type : Réponse à ma Critique</strong></p>
+                                
+                            {% elif post.ticket.user != user and post.user != user %}
+                                <p><strong>Type : Réponse à une Critique</strong></p>
+                            {% else %}
+                                <p><strong>Type : Inconnu</strong></p>
                             {% endif %}
+                            
                         </div>
                     {% endif %}
                 </div>
