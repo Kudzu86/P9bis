@@ -5,7 +5,6 @@
 {% block content %}
 <div class="feed-container">
     <h2>Mon Flux</h2>
-
     <p>Bienvenue {{ user.username }} !</p>
 
     <form method="get" class="filter-form" id="filter-form">
@@ -14,7 +13,7 @@
             Afficher mes propres demandes et critiques
         </label>
     </form>
-    
+
     <script>
         function toggleShowUserPosts(checkbox) {
             const form = document.getElementById('filter-form');
@@ -27,7 +26,7 @@
             window.location.search = params.toString();
         }
     </script>
-    
+
     <div class="button-group my-3">
         <a href="{% url 'add_ticket_and_review' %}" class="btn btn-primary">Créer une Critique</a>
         <a href="{% url 'add_ticket' %}" class="btn btn-secondary">Demander une Critique</a>
@@ -43,51 +42,49 @@
                     </div>
 
                     {% if post.content_type == 'TICKET' %}
-                        <div class="ticket">
+                        <div class="ticket-feed-item">
                             <h3><a href="{% url 'ticket_detail' post.id %}">{{ post.title }}</a></h3>
                             {% if post.image %}
                                 <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
                             {% endif %}
-                            <p>{{ post.description }}</p>
-                            <p><strong>Type : Demande de Critique</strong></p>
-                            {% if user.id != post.user.id %}
+                                <p>{{ post.description }}</p>
+                                <p><strong>Type : Demande de Critique</strong></p>
+                            {% if not post.review %}
                                 <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
+                            {% else %}
+                                <a><em>Une réponse à déjà été rédigéé.</em></a>
                             {% endif %}
                         </div>
-                    {% elif post.content_type == 'REVIEW' %}
+                    {% endif %}
+
+                    {% if post.content_type == 'REVIEW' %}
                         <div class="review">
-                            <h3><a href="{% url 'ticket_detail' post.ticket.id %}">{{ post.headline }}</a></h3>
-                            {% if post.image %}
-                                <img src="{{ post.image.url }}" alt="{{ post.headline }}" class="post-image">
-                            {% endif %}
+                            <h3>
+                                <a href="{% url 'ticket_detail' post.ticket.id %}">{{ post.headline }}</a>
+                            </h3>
                             <p>{{ post.body }}</p>
                             <p><strong>Note : {{ post.rating }} / 5</strong></p>
+                            <p><strong>Type : 
+                                {% if post.is_critique_complete %}
+                                    Critique (complète)
+                                {% elif post.is_response %}
+                                    Réponse à ma demande de Critique
+                                {% elif post.is_reply %}
+                                    Ma réponse à une demande de Critique
+                                {% else %}
+                                    Réponse à une autre demande de Critique
+                                {% endif %}
+                            </strong></p>
 
-                            <!-- Affichage du type de critique -->
-                            {% if post.ticket.user == user and post.user != user %}
-                                <p><strong>Type : Réponse à ma demande de Critique</strong></p>
-
-                            {% elif post.ticket.user != user and post.user == user %}
-                                <p><strong>Type : Ma réponse à une demande de Critique</strong></p>
-
-                            {% elif post.ticket.user != user and post.user != user and post.ticket.user != post.user %}
-                                <p><strong>Type : Réponse à une demande de Critique</strong></p>
-
-                            {% elif post.ticket.user == user and post.user == user %}
-                                <p><strong>Type : Ma Critique</strong></p>
-
-                            {% elif post.ticket.user != user and post.user != user %}
-                                <p><strong>Type : Critique</strong></p>
-
-                            {% elif post.ticket.user == user and post.user != user %}
-                                <p><strong>Type : Réponse à ma Critique</strong></p>
-                                
-                            {% elif post.ticket.user != user and post.user != user %}
-                                <p><strong>Type : Réponse à une Critique</strong></p>
-                            {% else %}
-                                <p><strong>Type : Inconnu</strong></p>
-                            {% endif %}
-                            
+                            <div class="ticket-details mt-3">
+                                <h3>Ticket correspondant : <a href="{% url 'ticket_detail' post.ticket.id %}">{{ post.ticket.title }}</a></h3>
+                                {% if post.ticket.image %}
+                                    <img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}" class="post-image">
+                                {% endif %}
+                                <p>{{ post.ticket.description }}</p>
+                                <p><strong>Posté par : {{ post.ticket.user.username }}</strong></p>
+                                <p>Date : {{ post.ticket.time_created|date:"d M Y H:i" }}</p>
+                            </div>
                         </div>
                     {% endif %}
                 </div>

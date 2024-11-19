@@ -140,6 +140,10 @@ span {
     display: none; /* Cache uniquement le texte d'aide pour le nom d'utilisateur */
 }
 
+.followed-user span {
+    display: block;
+}
+
 .registration-form li {
     font-style: italic; /* Met le texte en italique */
     font-size: 0.8em;

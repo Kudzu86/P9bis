@@ -59,7 +59,7 @@ def feed(request):
     followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
 
     # Vérifier si la case pour afficher les posts de l'utilisateur est cochée
-    show_user_posts = request.GET.get('show_user_posts', 'off') == 'on'
+    show_user_posts = request.GET.get('show_user_posts', None) == 'on'
     
 
     # Récupérer les tickets qui ne sont pas des réponses
@@ -72,14 +72,15 @@ def feed(request):
         Q(user=user) | Q(user__in=followed_users)
     ).annotate(content_type=Value('REVIEW', CharField()))
 
-# Ajouter l'attribut is_response pour chaque critique
+    for ticket in tickets:
+        ticket.has_self_review = ticket.review_set.filter(user=ticket.user).exists()
+
+    # Ajouter l'attribut is_response pour chaque critique
     for review in reviews:
-        # Vérifier si la critique est associée à un ticket et si l'auteur du ticket est différent de l'utilisateur connecté
+        review.is_critique_complete = review.ticket is not None and review.user == review.ticket.user
         review.is_response = review.ticket is not None and review.ticket.user != request.user
-        # Définir l'attribut is_reply en vérifiant si la critique est liée à un ticket
-        # et si l'auteur de la critique est différent de l'auteur du ticket. 
-        # Si aucun ticket n'est lié, l'attribut is_reply sera défini sur False.
         review.is_reply = review.ticket is not None and review.user != review.ticket.user if review.ticket else False
+
 
     # Récupérer les critiques sur les tickets de l'utilisateur
     reviews_on_user_tickets = Review.objects.filter(
@@ -205,16 +206,15 @@ def ticket_detail(request, ticket_id):
 @login_required
 def add_review(request):
     if request.method == "POST":
-        ticket_id = request.POST.get('ticket_id')  # ID du ticket auquel on veut répondre
+        # Récupérer l'ID du ticket à partir des données POST
+        ticket_id = request.POST.get('ticket_id')
 
-        # Vérifier si l'ID du ticket est vide
         if not ticket_id:
             return render(request, 'add_review.html', {
-                'error': 'Aucun ID de ticket fourni.',
-                'ticket_id': ticket_id  # Cela devrait rester vide ici
+                'error': 'Aucun ID de ticket fourni.'
             })
 
-        # Vérifier l'existence du ticket
+        # Récupérer le ticket correspondant
         ticket = get_object_or_404(Ticket, id=ticket_id)
 
         # Récupérer les données du formulaire
@@ -226,26 +226,36 @@ def add_review(request):
         if not headline or not rating:
             return render(request, 'add_review.html', {
                 'error': 'Le titre et la note sont obligatoires.',
-                'ticket_id': ticket_id  # Conserve l'ID ici
+                'ticket': ticket
             })
 
-        # Créer la review en associant le ticket récupéré
+        # Créer et enregistrer la critique associée au ticket
         review = Review(
             rating=rating,
             headline=headline,
             body=body,
             user=request.user,
-            ticket=ticket  # Associer le ticket existant
+            ticket=ticket
         )
-        
-        review.save()  # Enregistrer la critique
+        review.save()
 
-        # Redirection vers le détail du ticket après soumission
-        return redirect('ticket_detail', ticket_id=ticket_id)
+        # Rediriger vers le détail du ticket
+        return redirect('ticket_detail', ticket_id=ticket.id)
 
-    # Si la méthode n'est pas POST, essaye de récupérer le ticket_id de l'URL
+    # Si la méthode est GET
     ticket_id = request.GET.get('ticket_id')
-    return render(request, 'add_review.html', {'ticket_id': ticket_id})
+    if ticket_id:
+        # Tenter de récupérer le ticket
+        ticket = get_object_or_404(Ticket, id=ticket_id)
+    else:
+        # Si aucun ticket_id n'est fourni, afficher un message d'erreur
+        return render(request, 'add_review.html', {
+            'error': 'Aucun ticket sélectionné pour ajouter une critique.'
+        })
+
+    # Afficher le formulaire avec le ticket existant
+    return render(request, 'add_review.html', {'ticket': ticket})
+
 
 
 

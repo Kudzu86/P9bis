@@ -8,6 +8,16 @@
         <h1>Répondre à une Demande de Critique</h1>
     </header>
 
+    <div>
+        <h2>Titre de la demande de critique : {{ ticket.title }}</h2>
+        <p><strong>Posté par :</strong> {{ ticket.user.username }}</p>
+        <p><strong>Date :</strong> {{ ticket.time_created|date:"d M Y H:i" }}</p>
+        <p>{{ ticket.description }}</p>
+        {% if ticket.image %}
+            <img src="{{ ticket.image.url }}" alt="Image de {{ ticket.title }}" class="ticket-image">
+        {% endif %}
+    </div>
+
     <form method="POST" class="add_review-form" enctype="multipart/form-data">
         {% csrf_token %}
 
