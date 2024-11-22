@@ -7,7 +7,8 @@ Cette application permet aux utilisateurs :
 - **De consulter des critiques** publiées par d'autres utilisateurs.
 - **De suivre et de gérer les utilisateurs suivis** pour personnaliser son flux d'activités.
 
-Elle offre une expérience simple et accessible, conforme aux directives **WCAG**, pour consulter et partager des avis littéraires.
+L'objectif est de créer une communauté où les utilisateurs peuvent échanger des avis et critiques littéraires de manière collaborative.
+Cette application offre une expérience simple et accessible, conforme aux directives **WCAG**, pour consulter et partager des avis littéraires.
 
 ---
 
@@ -82,20 +83,7 @@ Elle offre une expérience simple et accessible, conforme aux directives **WCAG*
    python manage.py runserver
    ```
 
-7. **Accéder à l'application : Ouvrez un navigateur et rendez-vous à l'adresse suivante** :
-   ```
-   http://127.0.0.1:8000/
-   ```
-
----
-   
-## **Tests et données de démonstration**
-
-- L'application inclut des données de test pour faciliter la démonstration.
-- Utilisez le fichier `db.sqlite3` inclus dans le repository pour avoir une base pré-remplie.
-- Pour vous connecter avec un utilisateur administrateur de test, utilisez les identifiants suivants :
-  - **Nom d'utilisateur :** `Kudzu`
-  - **Mot de passe :** `jose`
+7. **Accéder à l'application : Ouvrez http://127.0.0.1:8000 dans votre navigateur**.
 
 ---
 
@@ -103,8 +91,6 @@ Elle offre une expérience simple et accessible, conforme aux directives **WCAG*
 
 ### **Principaux fichiers et répertoires**
 - `manage.py` : Commande d'administration principale de Django.
-- `db.sqlite3` : Base de données SQLite contenant les données de test.
-- `requirements.txt` : Liste des dépendances Python nécessaires.
 - `review/` : Répertoire principal contenant le code source de l'application.
   - `models.py` : Définition des modèles de données.
   - `views.py` : Logique métier pour chaque page.
@@ -124,6 +110,16 @@ Le schéma de base de données comprend les principales entités suivantes :
   - `headline`, `body`, `rating`, `ticket`, `user`, `time_created`
 - **Utilisateur Suivi (UserFollows)** :
   - `user`, `followed_user`
+
+---
+   
+## **Tests et données de démonstration**
+
+- L'application inclut des données de test pour faciliter la démonstration.
+- Inclut un fichier db.sqlite3 prérempli.
+- Compte administrateur de test :
+  - **Nom d'utilisateur :** `Kudzu`
+  - **Mot de passe :** `jose`
 
 ---
 
