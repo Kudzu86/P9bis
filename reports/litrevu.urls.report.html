@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: litrevu\urls.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="litrevu.urls.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               litrevu\urls.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  23
+               </span>
+               <strong>E501:</strong> line too long (88 > 79 characters)
+               
+                  (and 17 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l10">
+                  <tt><i>10</i> <span class="kn">from</span> <span class="nn">reviews</span> <span class="kn">import</span> <span class="n">views</span>  <span class="c1"># Import des vues personnalisées dans l&#39;application &quot;reviews&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l11">
+                  <tt><i>11</i> <span class="kn">from</span> <span class="nn">django.contrib.auth.views</span> <span class="kn">import</span> <span class="n">LogoutView</span>  <span class="c1"># Vue par défaut pour la déconnexion</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l12">
+                  <tt><i>12</i> <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>  <span class="c1"># Pour accéder aux paramètres de l&#39;application</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l13">
+                  <tt><i>13</i> <span class="kn">from</span> <span class="nn">django.conf.urls.static</span> <span class="kn">import</span> <span class="n">static</span>  <span class="c1"># Pour servir les fichiers statiques durant le développement</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l17">
+                  <tt><i>17</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">),</span>  <span class="c1"># URL pour l&#39;accès à l&#39;interface d&#39;administration</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l18">
+                  <tt><i>18</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;login/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">login_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">),</span>  <span class="c1"># Route pour la connexion des utilisateurs</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l19">
+                  <tt><i>19</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">feed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;feed&#39;</span><span class="p">),</span>  <span class="c1"># Route pour le fil d&#39;actualité (page d&#39;accueil)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (112 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l20">
+                  <tt><i>20</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;register/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">register_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;register&#39;</span><span class="p">),</span>  <span class="c1"># Route pour l&#39;inscription d&#39;un nouvel utilisateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l21">
+                  <tt><i>21</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;logout/&#39;</span><span class="p">,</span> <span class="n">LogoutView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;logout&#39;</span><span class="p">),</span>  <span class="c1"># Route pour la déconnexion des utilisateurs</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l22">
+                  <tt><i>22</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/add/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour ajouter un ticket (livre/article)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (120 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l23">
+                  <tt><i>23</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/edit/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">edit_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;edit_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour éditer un ticket existant</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (120 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l24">
+                  <tt><i>24</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">delete_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;delete_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour supprimer un ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l25">
+                  <tt><i>25</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/add/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour ajouter une critique</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (124 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l26">
+                  <tt><i>26</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/&lt;int:review_id&gt;/edit/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">edit_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;edit_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour éditer une critique existante</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (123 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l27">
+                  <tt><i>27</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/&lt;int:review_id&gt;/delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">delete_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;delete_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour supprimer une critique</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (97 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l28">
+                  <tt><i>28</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;follows/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">manage_follows</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;manage_follows&#39;</span><span class="p">),</span>  <span class="c1"># Route pour gérer les suivis</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (118 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l29">
+                  <tt><i>29</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;follows/&lt;int:follow_id&gt;/remove/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">remove_follow</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;remove_follow&#39;</span><span class="p">),</span>  <span class="c1"># Route pour retirer un suivi</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (124 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l30">
+                  <tt><i>30</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">ticket_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ticket_detail&#39;</span><span class="p">),</span>  <span class="c1"># Route pour afficher le détail d&#39;un ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (127 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l31">
+                  <tt><i>31</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/response/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">response_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;response_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour répondre à un ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l32">
+                  <tt><i>32</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;posts/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">user_posts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;posts&#39;</span><span class="p">),</span>  <span class="c1"># Route pour afficher les posts d&#39;un utilisateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l33">
+                  <tt><i>33</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;add_ticket_and_review/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_ticket_and_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_ticket_and_review&#39;</span><span class="p">),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l36">
+                  <tt><i>36</i> <span class="c1"># Configuration pour servir les fichiers médias en mode débogage (lorsque settings.DEBUG est True)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="litrevu.urls.source.html#l38">
+                  <tt><i>38</i>     <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

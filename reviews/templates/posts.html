@@ -9,7 +9,7 @@
     </header>
 
     <!-- Section pour afficher les Tickets -->
-    <h2>Mes Tickets</h2>
+    <h2>Mes Demandes de Critique</h2>
     {% if tickets %}
         <ul>
             {% for ticket in tickets %}
@@ -19,13 +19,24 @@
                     </a>
                     <p>{{ ticket.description }}</p>
                     <p>Posté le : {{ ticket.time_created }}</p>
+                    
+                    {# Afficher les boutons Modifier et Supprimer côte à côte pour les tickets #}
+                    {% if ticket.user == request.user %}
+                        <div class="ticket-actions">
+                            <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-primary">Modifier</a>
+                            <form action="{% url 'delete_ticket' ticket.id %}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?');" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>Aucun ticket publié.</p>
     {% endif %}
-    
+
     <!-- Section pour afficher les Critiques créées par l'utilisateur -->
     <h2>Mes Critiques</h2>
     {% if reviews %}
@@ -33,17 +44,29 @@
             {% for review in reviews %}
                 <li>
                     <a href="{% url 'ticket_detail' review.ticket.id %}">
+                        <h3>{{ review.ticket.title }}</h3>
                         <h3>{{ review.headline }} ({{ review.rating }} / 5)</h3>
                     </a>
                     <p>{{ review.body }}</p>
                     <p>Posté le : {{ review.time_created }}</p>
+                    
+                    {# Afficher les boutons Modifier et Supprimer côte à côte pour les critiques #}
+                    {% if review.user == request.user %}
+                        <div class="review-actions">
+                            <a href="{% url 'edit_review' review.id %}" class="btn btn-primary">Modifier</a>
+                            <form action="{% url 'delete_review' review.id %}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?');" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>Aucune critique publiée.</p>
     {% endif %}
-    
+
     <!-- Section pour afficher les Réponses aux Tickets de l'utilisateur -->
     <h2>Mes Réponses</h2>
     {% if responses %}
@@ -55,6 +78,17 @@
                     </a>
                     <p>{{ response.body }}</p>
                     <p>Posté le : {{ response.time_created }}</p>
+                    
+                    {# Afficher les boutons Modifier et Supprimer côte à côte pour les réponses #}
+                    {% if response.user == request.user %}
+                        <div class="response-actions">
+                            <a href="{% url 'edit_review' response.id %}" class="btn btn-primary">Modifier</a>
+                            <form action="{% url 'delete_review' response.id %}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?');" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

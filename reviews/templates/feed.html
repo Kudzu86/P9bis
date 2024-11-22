@@ -47,15 +47,21 @@
                             {% if post.image %}
                                 <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
                             {% endif %}
-                                <p>{{ post.description }}</p>
-                                <p><strong>Type : Demande de Critique</strong></p>
-                            {% if not post.review %}
-                                <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
+                            <p>{{ post.description }}</p>
+                            
+                            <p><strong>Type : Demande de Critique</strong></p>
+                            
+                            {% if post.reviews.all %}
+                                <p><em>Cette demande a déjà reçu une critique.</em></p>
+                            {% elif request.user == post.user %}
+                                <p><em>Vous ne pouvez pas répondre à votre propre demande.</em></p>
                             {% else %}
-                                <a><em>Une réponse à déjà été rédigéé.</em></a>
+                                <a href="{% url 'add_review' %}?ticket_id={{ post.id }}" class="btn btn-sm btn-info">Répondre à cette Demande</a>
                             {% endif %}
+
                         </div>
                     {% endif %}
+                    
 
                     {% if post.content_type == 'REVIEW' %}
                         <div class="review">
@@ -65,15 +71,18 @@
                             <p>{{ post.body }}</p>
                             <p><strong>Note : {{ post.rating }} / 5</strong></p>
                             <p><strong>Type : 
-                                {% if post.is_critique_complete %}
-                                    Critique (complète)
-                                {% elif post.is_response %}
-                                    Réponse à ma demande de Critique
-                                {% elif post.is_reply %}
+                                {% if post.ticket.user == post.user and post.user != request.user %}
+                                    Critique complète
+                                {% elif post.ticket.user == post.user and post.user == request.user %}
+                                    Ma Critique complète
+                                {% elif post.ticket.user != post.user and post.user == request.user %}
                                     Ma réponse à une demande de Critique
+                                {% elif post.ticket.user != post.user and request.user == post.ticket.user %}
+                                    Réponse à ma demande de Critique
                                 {% else %}
-                                    Réponse à une autre demande de Critique
+                                    Réponse à une demande de Critique
                                 {% endif %}
+
                             </strong></p>
 
                             <div class="ticket-details mt-3">

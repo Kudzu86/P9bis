@@ -12,10 +12,11 @@
             <!-- Section gauche pour le bouton "S'inscrire" -->
             <aside class="left-section">
                 <h2>Pas encore inscrit ?</h2>
-                <a href="{% url 'register' %}">
-                    <button>S'inscrire</button>
-                </a>
-            </aside>
+                <!-- Formulaire avec un bouton -->
+                <form action="{% url 'register' %}" method="get">
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </aside>       
 
             <!-- Section droite pour le formulaire de connexion -->
             <aside class="right-section">

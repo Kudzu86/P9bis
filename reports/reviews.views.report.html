@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: reviews\views.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="reviews.views.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               reviews\views.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  3
+               </span>
+               <strong>F401:</strong> 'django.db.models' imported but unused
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'django.db.models' imported but unused:</p>
+               
+               <a href="reviews.views.source.html#l10">
+                  <tt><i>10</i> <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'django.http.HttpResponseRedirect' imported but unused:</p>
+               
+               <a href="reviews.views.source.html#l11">
+                  <tt><i>11</i> <span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'django.urls.reverse' imported but unused:</p>
+               
+               <a href="reviews.views.source.html#l12">
+                  <tt><i>12</i> <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  80
+               </span>
+               <strong>E501:</strong> line too long (132 > 79 characters)
+               
+                  (and 36 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (132 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l1">
+                  <tt><i>1</i> <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">get_object_or_404</span>  <span class="c1"># Importation des fonctions pour rendre des templates et rediriger</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l2">
+                  <tt><i>2</i> <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Review</span><span class="p">,</span> <span class="n">Ticket</span><span class="p">,</span> <span class="n">UserFollows</span> <span class="c1"># Importation des modèles nécessaires</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">get_user_model</span>  <span class="c1"># Importation des fonctions d&#39;authentification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l5">
+                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="kn">import</span> <span class="n">AuthenticationForm</span>  <span class="c1"># Importation du formulaire d&#39;authentification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l6">
+                  <tt><i>6</i> <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">messages</span>  <span class="c1"># Importation du module pour les messages flash</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (142 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l7">
+                  <tt><i>7</i> <span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">CustomUserCreationForm</span><span class="p">,</span> <span class="n">TicketForm</span><span class="p">,</span> <span class="n">ReviewForm</span> <span class="c1"># Importation du formulaire personnalisé pour l&#39;inscription des utilisateurs</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l18">
+                  <tt><i>18</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  <span class="c1"># Vérifie si la méthode de la requête est POST</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (108 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l19">
+                  <tt><i>19</i>         <span class="n">form</span> <span class="o">=</span> <span class="n">CustomUserCreationForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>  <span class="c1"># Crée une instance du formulaire avec les données POST</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l20">
+                  <tt><i>20</i>         <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>  <span class="c1"># Cette ligne vérifie si les données du formulaire sont valides</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l21">
+                  <tt><i>21</i>             <span class="n">user</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Enregistre l&#39;utilisateur dans la base de données</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l23">
+                  <tt><i>23</i>             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  <span class="c1"># Redirection vers la page d&#39;accueil ou &#39;feed&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l25">
+                  <tt><i>25</i>             <span class="nb">print</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>  <span class="c1"># Affiche les erreurs de formulaire dans la console</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l27">
+                  <tt><i>27</i>         <span class="n">form</span> <span class="o">=</span> <span class="n">CustomUserCreationForm</span><span class="p">()</span>  <span class="c1"># Crée un formulaire vide pour la première fois</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l29">
+                  <tt><i>29</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;register.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>  <span class="c1"># Rendu du template avec le formulaire</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l33">
+                  <tt><i>33</i> <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retourne les critiques des utilisateurs suivis par l&#39;utilisateur donné et ses propres critiques.&quot;&quot;&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l35">
+                  <tt><i>35</i>     <span class="n">followed_users</span> <span class="o">=</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;followed_user&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l37">
+                  <tt><i>37</i>     <span class="c1"># Obtenir les critiques des utilisateurs suivis et les critiques de l&#39;utilisateur lui-même</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l38">
+                  <tt><i>38</i>     <span class="n">reviews</span> <span class="o">=</span> <span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__in</span><span class="o">=</span><span class="n">followed_users</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l44">
+                  <tt><i>44</i> <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retourne les tickets des utilisateurs suivis par l&#39;utilisateur donné et ses propres tickets.&quot;&quot;&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l46">
+                  <tt><i>46</i>     <span class="n">followed_users</span> <span class="o">=</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;followed_user&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l48">
+                  <tt><i>48</i>     <span class="c1"># Obtenir les tickets des utilisateurs suivis et les tickets de l&#39;utilisateur lui-même</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l49">
+                  <tt><i>49</i>     <span class="n">tickets</span> <span class="o">=</span> <span class="n">Ticket</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__in</span><span class="o">=</span><span class="n">followed_users</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">Ticket</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l59">
+                  <tt><i>59</i>     <span class="n">followed_users</span> <span class="o">=</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;followed_user&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l70">
+                  <tt><i>70</i>     <span class="c1"># Récupérer toutes les critiques, y compris celles associées aux tickets répondus</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l76">
+                  <tt><i>76</i>         <span class="n">ticket</span><span class="o">.</span><span class="n">has_self_review</span> <span class="o">=</span> <span class="n">ticket</span><span class="o">.</span><span class="n">review_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">ticket</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l80">
+                  <tt><i>80</i>         <span class="n">review</span><span class="o">.</span><span class="n">is_critique_complete</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">review</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l81">
+                  <tt><i>81</i>         <span class="n">review</span><span class="o">.</span><span class="n">is_response</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (117 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l82">
+                  <tt><i>82</i>         <span class="n">review</span><span class="o">.</span><span class="n">is_reply</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">review</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span><span class="o">.</span><span class="n">user</span> <span class="k">if</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l112">
+                  <tt><i>112</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;feed.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;posts&#39;</span><span class="p">:</span> <span class="n">posts</span><span class="p">,</span> <span class="s1">&#39;show_user_posts&#39;</span><span class="p">:</span> <span class="n">show_user_posts</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l118">
+                  <tt><i>118</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  <span class="c1"># Vérifie si la méthode de la requête est POST</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l119">
+                  <tt><i>119</i>         <span class="n">form</span> <span class="o">=</span> <span class="n">AuthenticationForm</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>  <span class="c1"># Crée une instance du formulaire d&#39;authentification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l121">
+                  <tt><i>121</i>             <span class="n">username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># Récupère le nom d&#39;utilisateur du formulaire</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l122">
+                  <tt><i>122</i>             <span class="n">password</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>  <span class="c1"># Récupère le mot de passe du formulaire</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l123">
+                  <tt><i>123</i>             <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>  <span class="c1"># Authentifie l&#39;utilisateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l126">
+                  <tt><i>126</i>                 <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Bienvenue </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> !&quot;</span><span class="p">)</span>  <span class="c1"># Affiche un message de succès</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l127">
+                  <tt><i>127</i>                 <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  <span class="c1"># Redirection vers la page principale après connexion</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (136 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l129">
+                  <tt><i>129</i>                 <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Nom d&#39;utilisateur ou mot de passe incorrect.&quot;</span><span class="p">)</span>  <span class="c1"># Message d&#39;erreur si l&#39;authentification échoue</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (132 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l131">
+                  <tt><i>131</i>             <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Erreur lors de la soumission du formulaire.&quot;</span><span class="p">)</span>  <span class="c1"># Message d&#39;erreur si le formulaire est invalide</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l133">
+                  <tt><i>133</i>         <span class="n">form</span> <span class="o">=</span> <span class="n">AuthenticationForm</span><span class="p">()</span>  <span class="c1"># Crée un formulaire vide pour la première fois</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l135">
+                  <tt><i>135</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;login.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>  <span class="c1"># Rendu du template avec le formulaire d&#39;authentification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l164">
+                  <tt><i>164</i>         <span class="c1"># Remplit le formulaire avec les données soumises et les données du billet existant</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l167">
+                  <tt><i>167</i>             <span class="c1"># Si une image est ajoutée, elle sera automatiquement gérée par le formulaire</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l169">
+                  <tt><i>169</i>             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  <span class="c1"># Redirige vers la page &quot;feed&quot; après la modification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l186">
+                  <tt><i>186</i>     <span class="n">ticket</span> <span class="o">=</span> <span class="n">Ticket</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">ticket_id</span><span class="p">)</span>  <span class="c1"># Récupère le billet à supprimer grâce à son ID</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l188">
+                  <tt><i>188</i>     <span class="k">if</span> <span class="n">ticket</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>  <span class="c1"># Vérifie que l&#39;utilisateur connecté est l&#39;auteur du billet</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l189">
+                  <tt><i>189</i>         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  <span class="c1"># Si ce n&#39;est pas l&#39;auteur, redirige vers le feed</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l191">
+                  <tt><i>191</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  <span class="c1"># Vérifie que la requête est bien une méthode POST pour la suppression</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l193">
+                  <tt><i>193</i>         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  <span class="c1"># Redirige vers la page &quot;feed&quot; après la suppression</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (129 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l195">
+                  <tt><i>195</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;delete_ticket.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="p">})</span>  <span class="c1"># Affiche une page demandant confirmation avant suppression</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (113 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l202">
+                  <tt><i>202</i>     <span class="n">reviews</span> <span class="o">=</span> <span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ticket</span><span class="o">=</span><span class="n">ticket</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-time_created&#39;</span><span class="p">)</span>  <span class="c1"># Récupérer les critiques du ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l209">
+                  <tt><i>209</i>         <span class="n">review</span><span class="o">.</span><span class="n">is_reply</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">review</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">review</span><span class="o">.</span><span class="n">ticket</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l269">
+                  <tt><i>269</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;add_review.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="p">,</span> <span class="s1">&#39;ticket_id&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="o">.</span><span class="n">id</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l310">
+                  <tt><i>310</i>     <span class="c1"># Récupère l&#39;avis spécifique ou renvoie une erreur 404 si l&#39;avis n&#39;existe pas</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l318">
+                  <tt><i>318</i>         <span class="c1"># Mise à jour des champs de l&#39;avis avec les nouvelles données du formulaire</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l327">
+                  <tt><i>327</i>             <span class="n">ticket</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="n">ticket</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l335">
+                  <tt><i>335</i>     <span class="c1"># Affiche un formulaire pré-rempli avec les données actuelles de l&#39;avis et du ticket si l&#39;utilisateur est le créateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l338">
+                  <tt><i>338</i>         <span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span> <span class="k">if</span> <span class="n">is_creator</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># On inclut le ticket dans le contexte si l&#39;utilisateur est le créateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l346">
+                  <tt><i>346</i>     <span class="c1"># Récupère l&#39;avis spécifique ou renvoie une erreur 404 si l&#39;avis n&#39;existe pas</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l353">
+                  <tt><i>353</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  <span class="c1"># Si la requête est une soumission de formulaire (POST)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l357">
+                  <tt><i>357</i>         <span class="c1"># Si l&#39;utilisateur est aussi le créateur du ticket, on le supprime également</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (110 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l365">
+                  <tt><i>365</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;delete_review.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;review&#39;</span><span class="p">:</span> <span class="n">review</span><span class="p">,</span> <span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span> <span class="k">if</span> <span class="n">is_creator</span> <span class="k">else</span> <span class="kc">None</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l374">
+                  <tt><i>374</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  <span class="c1"># Si l&#39;utilisateur soumet le formulaire d&#39;ajout</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l375">
+                  <tt><i>375</i>         <span class="n">username_to_follow</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># Récupère le nom d&#39;utilisateur entré</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (135 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l377">
+                  <tt><i>377</i>             <span class="n">user_to_follow</span> <span class="o">=</span> <span class="n">get_user_model</span><span class="p">()</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username_to_follow</span><span class="p">)</span>  <span class="c1"># Cherche l&#39;utilisateur dans la base de données</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l378">
+                  <tt><i>378</i>             <span class="k">if</span> <span class="n">user_to_follow</span> <span class="o">==</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>  <span class="c1"># L&#39;utilisateur ne peut pas se suivre lui-même</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l379">
+                  <tt><i>379</i>                 <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Vous ne pouvez pas vous suivre vous-même.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (119 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l380">
+                  <tt><i>380</i>             <span class="k">elif</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">followed_user</span><span class="o">=</span><span class="n">user_to_follow</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>  <span class="c1"># Si déjà suivi</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l383">
+                  <tt><i>383</i>                 <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">followed_user</span><span class="o">=</span><span class="n">user_to_follow</span><span class="p">)</span>  <span class="c1"># Créer la relation de suivi</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l384">
+                  <tt><i>384</i>                 <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Vous suivez maintenant </span><span class="si">{</span><span class="n">user_to_follow</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l388">
+                  <tt><i>388</i>         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;manage_follows&#39;</span><span class="p">)</span>  <span class="c1"># Redirige pour éviter la soumission multiple</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l390">
+                  <tt><i>390</i>     <span class="c1"># Récupérer les abonnements (utilisateurs suivis par l&#39;utilisateur connecté)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l391">
+                  <tt><i>391</i>     <span class="n">followed_users</span> <span class="o">=</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;followed_user&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l394">
+                  <tt><i>394</i>     <span class="n">followers</span> <span class="o">=</span> <span class="n">UserFollows</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">followed_user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l413">
+                  <tt><i>413</i>         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Vous avez cessé de suivre </span><span class="si">{</span><span class="n">follow</span><span class="o">.</span><span class="n">followed_user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l422">
+                  <tt><i>422</i>         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>  <span class="c1"># Redirection si l&#39;utilisateur n&#39;est pas connecté</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l426">
+                  <tt><i>426</i>     <span class="n">reviews</span> <span class="o">=</span> <span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">ticket__user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l429">
+                  <tt><i>429</i>     <span class="n">responses</span> <span class="o">=</span> <span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">ticket__user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l446">
+                  <tt><i>446</i>             <span class="n">review</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>  <span class="c1"># Associer la critique à l&#39;utilisateur connecté</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (105 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l448">
+                  <tt><i>448</i>             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;ticket_detail&#39;</span><span class="p">,</span> <span class="n">ticket_id</span><span class="o">=</span><span class="n">ticket</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>  <span class="c1"># Redirection vers le détail du ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="reviews.views.source.html#l452">
+                  <tt><i>452</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;response_ticket.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="p">,</span> <span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  16
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="reviews.views.source.html#l36">
+                  <tt><i>36</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l39">
+                  <tt><i>39</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l47">
+                  <tt><i>47</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l50">
+                  <tt><i>50</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l63">
+                  <tt><i>63</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l134">
+                  <tt><i>134</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l158">
+                  <tt><i>158</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l162">
+                  <tt><i>162</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l173">
+                  <tt><i>173</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l187">
+                  <tt><i>187</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l190">
+                  <tt><i>190</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l295">
+                  <tt><i>295</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l372">
+                  <tt><i>372</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l402">
+                  <tt><i>402</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l406">
+                  <tt><i>406</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l416">
+                  <tt><i>416</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  10
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l16">
+                  <tt><i>16</i> <span class="k">def</span> <span class="nf">register_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="reviews.views.source.html#l65">
+                  <tt><i>65</i>     <span class="c1"># Récupérer les tickets qui ne sont pas des réponses</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="reviews.views.source.html#l85">
+                  <tt><i>85</i>     <span class="c1"># Récupérer les critiques sur les tickets de l&#39;utilisateur</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l116">
+                  <tt><i>116</i> <span class="k">def</span> <span class="nf">login_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l183">
+                  <tt><i>183</i> <span class="c1"># Vue pour supprimer un billet</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l199">
+                  <tt><i>199</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (4):</p>
+               
+               <a href="reviews.views.source.html#l274">
+                  <tt><i>274</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l307">
+                  <tt><i>307</i> <span class="c1"># Édition d&#39;un avis existant</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l369">
+                  <tt><i>369</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="reviews.views.source.html#l407">
+                  <tt><i>407</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Expected 2 blank lines, found 1:</p>
+               
+               <a href="reviews.views.source.html#l138">
+                  <tt><i>138</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Expected 2 blank lines, found 3:</p>
+               
+               <a href="reviews.views.source.html#l184">
+                  <tt><i>184</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Expected 2 blank lines, found 3:</p>
+               
+               <a href="reviews.views.source.html#l308">
+                  <tt><i>308</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Expected 2 blank lines, found 1:</p>
+               
+               <a href="reviews.views.source.html#l454">
+                  <tt><i>454</i> <span class="nd">@login_required</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="reviews.views.source.html#l140">
+                  <tt><i>140</i>     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l146">
+                  <tt><i>146</i>             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">)</span>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l157">
+                  <tt><i>157</i>     <span class="n">ticket</span> <span class="o">=</span> <span class="n">Ticket</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">ticket_id</span><span class="p">)</span>  </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E261">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E261:</strong> at least two spaces before inline comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="reviews.views.source.html#l2">
+                  <tt><i>2</i> <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Review</span><span class="p">,</span> <span class="n">Ticket</span><span class="p">,</span> <span class="n">UserFollows</span> <span class="c1"># Importation des modèles nécessaires</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="reviews.views.source.html#l7">
+                  <tt><i>7</i> <span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">CustomUserCreationForm</span><span class="p">,</span> <span class="n">TicketForm</span><span class="p">,</span> <span class="n">ReviewForm</span> <span class="c1"># Importation du formulaire personnalisé pour l&#39;inscription des utilisateurs</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

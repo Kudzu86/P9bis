@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>litrevu\urls.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="litrevu.urls.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               litrevu\urls.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="sd">URL configuration for litrevu project.</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> &nbsp;</tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> <span class="sd">The `urlpatterns` list routes URLs to views. For more information please see:</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="sd">    https://docs.djangoproject.com/en/5.1/topics/http/urls/</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> <span class="c1"># Importations nécessaires pour la configuration des URLs</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i> <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (88 > 79 characters)</li>
+               
+               </ul><tt><i>10</i> <span class="kn">from</span> <span class="nn">reviews</span> <span class="kn">import</span> <span class="n">views</span>  <span class="c1"># Import des vues personnalisées dans l&#39;application &quot;reviews&quot;</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (86 > 79 characters)</li>
+               
+               </ul><tt><i>11</i> <span class="kn">from</span> <span class="nn">django.contrib.auth.views</span> <span class="kn">import</span> <span class="n">LogoutView</span>  <span class="c1"># Vue par défaut pour la déconnexion</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>12</i> <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>  <span class="c1"># Pour accéder aux paramètres de l&#39;application</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (104 > 79 characters)</li>
+               
+               </ul><tt><i>13</i> <span class="kn">from</span> <span class="nn">django.conf.urls.static</span> <span class="kn">import</span> <span class="n">static</span>  <span class="c1"># Pour servir les fichiers statiques durant le développement</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i> &nbsp;</tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i> <span class="c1"># Définition des routes de l&#39;application</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (101 > 79 characters)</li>
+               
+               </ul><tt><i>17</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">),</span>  <span class="c1"># URL pour l&#39;accès à l&#39;interface d&#39;administration</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (95 > 79 characters)</li>
+               
+               </ul><tt><i>18</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;login/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">login_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">),</span>  <span class="c1"># Route pour la connexion des utilisateurs</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (88 > 79 characters)</li>
+               
+               </ul><tt><i>19</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">feed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;feed&#39;</span><span class="p">),</span>  <span class="c1"># Route pour le fil d&#39;actualité (page d&#39;accueil)</span></tt>
+            </div>
+            <div id="l20"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (112 > 79 characters)</li>
+               
+               </ul><tt><i>20</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;register/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">register_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;register&#39;</span><span class="p">),</span>  <span class="c1"># Route pour l&#39;inscription d&#39;un nouvel utilisateur</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (103 > 79 characters)</li>
+               
+               </ul><tt><i>21</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;logout/&#39;</span><span class="p">,</span> <span class="n">LogoutView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;logout&#39;</span><span class="p">),</span>  <span class="c1"># Route pour la déconnexion des utilisateurs</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (109 > 79 characters)</li>
+               
+               </ul><tt><i>22</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/add/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour ajouter un ticket (livre/article)</span></tt>
+            </div>
+            <div id="l23"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (120 > 79 characters)</li>
+               
+               </ul><tt><i>23</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/edit/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">edit_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;edit_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour éditer un ticket existant</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (120 > 79 characters)</li>
+               
+               </ul><tt><i>24</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">delete_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;delete_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour supprimer un ticket</span></tt>
+            </div>
+            <div id="l25"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (96 > 79 characters)</li>
+               
+               </ul><tt><i>25</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/add/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour ajouter une critique</span></tt>
+            </div>
+            <div id="l26"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (124 > 79 characters)</li>
+               
+               </ul><tt><i>26</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/&lt;int:review_id&gt;/edit/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">edit_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;edit_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour éditer une critique existante</span></tt>
+            </div>
+            <div id="l27"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (123 > 79 characters)</li>
+               
+               </ul><tt><i>27</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;review/&lt;int:review_id&gt;/delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">delete_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;delete_review&#39;</span><span class="p">),</span>  <span class="c1"># Route pour supprimer une critique</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (97 > 79 characters)</li>
+               
+               </ul><tt><i>28</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;follows/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">manage_follows</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;manage_follows&#39;</span><span class="p">),</span>  <span class="c1"># Route pour gérer les suivis</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (118 > 79 characters)</li>
+               
+               </ul><tt><i>29</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;follows/&lt;int:follow_id&gt;/remove/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">remove_follow</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;remove_follow&#39;</span><span class="p">),</span>  <span class="c1"># Route pour retirer un suivi</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (124 > 79 characters)</li>
+               
+               </ul><tt><i>30</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">ticket_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ticket_detail&#39;</span><span class="p">),</span>  <span class="c1"># Route pour afficher le détail d&#39;un ticket</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (127 > 79 characters)</li>
+               
+               </ul><tt><i>31</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ticket/&lt;int:ticket_id&gt;/response/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">response_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;response_ticket&#39;</span><span class="p">),</span>  <span class="c1"># Route pour répondre à un ticket</span></tt>
+            </div>
+            <div id="l32"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (101 > 79 characters)</li>
+               
+               </ul><tt><i>32</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;posts/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">user_posts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;posts&#39;</span><span class="p">),</span>  <span class="c1"># Route pour afficher les posts d&#39;un utilisateur</span></tt>
+            </div>
+            <div id="l33"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (94 > 79 characters)</li>
+               
+               </ul><tt><i>33</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;add_ticket_and_review/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">add_ticket_and_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_ticket_and_review&#39;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i> <span class="p">]</span></tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i> &nbsp;</tt>
+            </div>
+            <div id="l36"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (98 > 79 characters)</li>
+               
+               </ul><tt><i>36</i> <span class="c1"># Configuration pour servir les fichiers médias en mode débogage (lorsque settings.DEBUG est True)</span></tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>38</i>     <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

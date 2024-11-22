@@ -14,11 +14,14 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
+                    <!-- Label invisible pour l'accessibilité, mais avec aria-label -->
+                    <label for="username" class="sr-only">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Tapez le nom d'utilisateur que vous recherchez" aria-label="Nom d'utilisateur">
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         </section>
+        
 
         <!-- Section pour afficher les abonnements -->
         <section>

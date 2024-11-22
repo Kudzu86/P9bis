@@ -4,52 +4,78 @@
 
 {% block content %}
 <div class="main-container">
+    <!-- Header avec les informations du ticket -->
     <header>
-        <h1>Modifier la Critique</h1>
+            {% if review.ticket.user == request.user and review.user == request.user %}
+                <h1>Modifier ma Critique</h1>
+            {% else %}
+                <h1>{{ review.ticket.title }}</h1>
+                <p><strong>Posté par :</strong> {{ review.ticket.user.username }}</p>
+                <p><strong>Date :</strong> {{ review.ticket.time_created|date:"d M Y H:i" }}</p>
+                <p>{{ review.ticket.description }}</p>
+                {% if review.ticket.image %}
+                    <img src="{{ review.ticket.image.url }}" alt="Image de {{ review.ticket.title }}" class="ticket-image">
+                {% endif %}
+            {% endif %}
+
     </header>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-        {% if ticket and ticket.user == request.user %}
+        <!-- Si l'utilisateur est l'auteur du ticket et de la critique -->
+        {% if review.ticket.user == request.user and review.user == request.user %}
+            <!-- Section complète pour modifier le ticket -->
             <div class="form-group">
                 <label for="ticket-title">Titre du Ticket :</label>
-                <input type="text" name="title" id="ticket-title" class="form-control" value="{{ ticket.title }}" required>
+                <input type="text" name="title" id="ticket-title" class="form-control" value="{{ review.ticket.title }}" required>
             </div>
             <div class="form-group">
                 <label for="ticket-description">Description du Ticket :</label>
-                <textarea name="description" id="ticket-description" class="form-control" required>{{ ticket.description }}</textarea>
+                <textarea name="description" id="ticket-description" class="form-control" required>{{ review.ticket.description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="ticket-image">Image du Ticket :</label>
                 <input type="file" name="image" id="ticket-image" class="form-control">
-                {% if ticket.image %}
-                    <img src="{{ ticket.image.url }}" alt="Image du ticket" class="img-thumbnail mt-2">
+                {% if review.ticket.image %}
+                    <img src="{{ review.ticket.image.url }}" alt="Image du ticket" class="img-thumbnail mt-2">
                 {% endif %}
             </div>
+        {% else %}
+            <h2>Modifier ma Réponse</h2>
         {% endif %}
 
+        <!-- Section pour modifier la critique -->
         <div class="form-group">
             <label for="headline">Titre de la Critique :</label>
             <input type="text" name="headline" id="headline" class="form-control" value="{{ review.headline }}" required>
         </div>
         
         <div class="form-group">
-            <label for="id_review_rating">Note (sur 5)</label>
+            <!-- Le label doit pointer vers un champ radio spécifique -->
+            <label for="star5">Note (sur 5) :</label>
             <div class="star-rating">
                 {% for i in "54321" %}
-                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required {% if review.rating == i %}checked{% endif %}>
-                    <label for="star{{ i }}">★</label>
+                    <input 
+                        type="radio" 
+                        id="star{{ i }}" 
+                        name="rating" 
+                        value="{{ i }}" 
+                        class="star-input" 
+                        {% if review.rating|stringformat:"i" == i %}checked{% endif %}>
+                    <label for="star{{ i }}" class="star-label">★</label>
                 {% endfor %}
             </div>
         </div>
+        
 
         <div class="form-group">
             <label for="body">Votre Critique :</label>
             <textarea name="body" id="body" class="form-control" required>{{ review.body }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sauvegarder les Modifications</button>
+        <!-- Bouton de soumission -->
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Voulez-vous vraiment enregistrer les modifications ?');">Enregistrer les modifications</button>
     </form>
 
     <p><a href="{% url 'ticket_detail' review.ticket.id %}">Annuler</a></p>

@@ -32,11 +32,17 @@
         
         <!-- Note sous forme d'étoiles -->
         <div class="form-group">
-            <label for="id_review_rating">Note (sur 5)</label>
+            <label for="star5">Note (sur 5)</label>
             <div class="star-rating">
                 {% for i in "54321" %}
-                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required {% if request.POST.rating == i %}checked{% endif %}>
-                    <label for="star{{ i }}">★</label>
+                    <input 
+                        type="radio" 
+                        id="star{{ i }}" 
+                        name="rating" 
+                        value="{{ i }}" 
+                        class="star-input" 
+                        {% if review.rating|stringformat:"i" == i %}checked{% endif %}>
+                    <label for="star{{ i }}" class="star-label">★</label>
                 {% endfor %}
             </div>
         </div>

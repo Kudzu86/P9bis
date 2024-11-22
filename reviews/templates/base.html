@@ -15,16 +15,17 @@
                 <a href="{% url 'feed' %}">Flux</a>
                 <a href="{% url 'posts' %}">Posts</a>
                 <a href="{% url 'manage_follows' %}">Abonnements</a>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a>
-
+                <a href="#" onclick="if (confirm('Voulez-vous vraiment vous déconnecter ?')) { event.preventDefault(); document.getElementById('logout-form').submit(); }">
+                    Déconnexion
+                </a>
+    
                 <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
                     {% csrf_token %}
                 </form>
-
-                
             </nav>
         </div>
     </header>
+    
 
     <main>
         {% if messages %}

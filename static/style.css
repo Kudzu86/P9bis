@@ -81,7 +81,7 @@ header h1 {
 /* Style pour les boutons */
 button {
     display: block;
-    background-color: #007bff; /* Couleur bleue pour le bouton */
+    background-color: #0054AD; /* Couleur bleue pour le bouton */
     color: white; /* Couleur du texte en blanc */
     padding: 10px 20px; /* Ajoute un remplissage interne */
     border: none; /* Supprime la bordure */
@@ -97,9 +97,8 @@ button:hover {
 
 /* Style pour les titres */
 h2 {
-    font-size: 20px; /* Taille de la police pour les titres */
     text-align: center; /* Centre le texte des titres */
-    margin: 30px;
+    margin: 50px;
 }
 
 /* Clearfix pour éviter les chevauchements */
@@ -110,7 +109,8 @@ h2 {
 }
 
 /* Style pour chaque groupe de formulaire */
-.form-group {
+.form-group {  
+    margin-top: 50px;
     display: flex; /* Utilise le flexbox pour le conteneur */
     align-items: center; /* Aligne verticalement au centre */
     margin-bottom: 15px; /* Espacement entre les groupes */
@@ -130,10 +130,15 @@ h2 {
     border-radius: 4px; /* Coins arrondis */
 }
 
+.sr-only {
+    text-align: center;
+}
+
 
 /* Style pour les paragraphes */
 p {
     text-align: center; /* Centre le texte dans le paragraphe */
+    margin: 1.5em;
 }
 
 span {
@@ -159,7 +164,7 @@ span {
 margin: 50px;
 }
 
-.manage-follows .form-group input {
+.manage-follows .form-group-follow input {
     max-width: 200px; /* Limite la largeur maximale à 200px */
     width: 100%; /* Permet à l'input de s'ajuster à la largeur de son conteneur */
     padding: 8px; /* Ajoute du rembourrage pour un meilleur confort */
@@ -237,7 +242,7 @@ margin: 50px;
 }
 
 .button-group a.btn-primary {
-    background-color: #007bff; /* Couleur de fond pour le bouton "Créer une Critique" */
+    background-color: #0054AD; /* Couleur de fond pour le bouton "Créer une Critique" */
 }
 
 .button-group a.btn-secondary {
@@ -257,7 +262,7 @@ margin: 50px;
 .post-item {
     width: 50%; /* Définit la largeur à 50% */
     padding: 15px; /* Espace interne autour de chaque post */
-    border: 1px solid #e0e0e0; /* Bord léger autour de chaque post */
+    border: 1.5px solid #d1d0d0; /* Bord léger autour de chaque post */
     border-radius: 8px; /* Coins arrondis pour les posts */
     background-color: #f9f9f9; /* Couleur de fond légèrement grise */
     margin: 0 auto 15px; /* Centre horizontalement avec auto pour la marge gauche et droite */
@@ -280,7 +285,7 @@ margin: 50px;
 }
 
 .star-rating label {
-    color: rgba(95, 95, 95, 0.493);
+    color: rgba(0, 0, 0, 0.54);
     cursor: pointer;
     font-size: 24px;
 }
@@ -302,31 +307,41 @@ textarea {
     min-width: 50%;   /* Largeur minimale pour empêcher un redimensionnement trop petit */
     min-height: 100px; /* Hauteur minimale pour empêcher un redimensionnement trop petit */
   }
-  
-.form-group {
-    margin-top: 50px;
-}
 
-.ticket-actions {
+
+.ticket-actions, 
+.review-actions, 
+.response-actions {
     text-align: center;
 }
 
-.ticket-actions a.btn.btn-primary {
-    background-color: #007bff;
+/* Style pour tous les boutons Modifier (Modifier les tickets, critiques et réponses) */
+.ticket-actions a.btn.btn-primary, 
+.review-actions a.btn.btn-primary, 
+.response-actions a.btn.btn-primary {
+    background-color: #0054AD;  /* Couleur de fond bleu */
     color: white;
-    padding: 10px 20px;
+    padding: 7px 14px;
     border: none;
+    text-align: center;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 40px auto 0 auto;
-    appearance: auto;
-    text-decoration: none;
+    font-style: normal;
+    margin: 10px auto 0 auto;
+    appearance: auto;  /* Ajoute un espacement entre les boutons */
+    text-decoration: none;  /* Enlève le soulignement du lien */
 }
 
-.ticket-actions button.btn.btn-danger {
-    background-color: #b14532;
+/* Style pour tous les boutons Supprimer (Supprimer les tickets, critiques et réponses) */
+.ticket-actions button.btn.btn-danger, 
+.review-actions button.btn.btn-danger, 
+.response-actions button.btn.btn-danger {
+    background-color: #b14532;  /* Couleur de fond rouge */
+    margin: 10px auto 0 auto;
+    padding: 7px 14px;
 }
+
 
 .ticket-detail-container .text-user {
     margin: 70px;
@@ -381,14 +396,15 @@ textarea {
 .posts-container {
     border: 1px solid;
     padding: 20px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 250px;
+    margin-right: 250px;
     margin-top: 50px;
     margin-bottom: 100px;
+    border-radius: 10px; /* Arrondir les coins */
 }
 
 .posts-container p {
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-style: italic;
 }
 
@@ -407,4 +423,58 @@ textarea {
 
 .header-title a:active {
     color: white; /* Reste blanc lorsqu'il est cliqué */
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 30%;   /* Limite la largeur de l'image à 100% du conteneur */
+    height: auto;      /* Laisse la hauteur s'ajuster automatiquement pour préserver le ratio */
+}
+
+
+.review-ticket-detail h3 {
+    text-align: center;
+    margin: 30px;
+    font-size: 1.4em;
+    font-style: normal;
+}
+
+.return {
+    margin-top: 100px;
+}
+
+.main-container header {
+    border: 2px solid #ccc; /* Encadre le header */
+    padding: 20px;
+    background-color: #f4f4f4; /* Fond clair pour le header */
+    border-radius: 8px; /* Coins arrondis pour un effet plus doux */
+    margin-bottom: 20px; /* Espacement sous le header */
+}
+
+.ticket-details.mt-3 {
+    border: 2px solid #ccc; /* Encadre le header */
+    padding: 20px;
+    background-color: #e0e0e0; /* Fond clair pour le header */
+    border-radius: 8px; /* Coins arrondis pour un effet plus doux */
+    margin-bottom: 20px; /* Espacement sous le header */
+}
+
+.ticket-image-edit {
+    margin: 30px auto;
+}
+
+.filter-form {
+    text-align: center;
+}
+
+.review-body {
+    margin: 3em;
+    font-style: normal;
+    font-size: 1.07em;
+}
+
+.review-ticket-detail {
+    font-style: italic;
+    font-size: 0.9em;
 }

@@ -12,39 +12,53 @@
         {% if ticket.image %}
             <img src="{{ ticket.image.url }}" alt="Image de {{ ticket.title }}" class="ticket-image">
         {% endif %}
+        {# Affiche les boutons du ticket uniquement si l'utilisateur est l'auteur du ticket et non de la critique associée #}
+        {% if ticket.user == request.user and not user_review %}
+            <div class="ticket-actions">
+                <!-- Bouton "Modifier" devenu bleu (btn-primary) -->
+                <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-primary">Modifier</a>
+                <form action="{% url 'delete_ticket' ticket.id %}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?');" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        {% endif %}
     </header>
 
-    {# Affiche les boutons du ticket uniquement si l'utilisateur est l'auteur du ticket et non de la critique associée #}
-    {% if ticket.user == request.user and not user_review %}
-        <div class="ticket-actions">
-            <a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-warning">Modifier</a>
-            <form action="{% url 'delete_ticket' ticket.id %}" method="POST" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Supprimer</button>
-            </form>
-        </div>
-    {% endif %}
 
-    <h2>Critiques</h2>
+
+    <h2>Critiques :</h2>
     {% if reviews %}
         <div class="reviews-list">
             {% for review in reviews %}
-                <div class="review">
+                <div class="review-ticket-detail">
                     <h3>{{ review.headline }}</h3>
                     <p><strong>Note :</strong> {{ review.rating }} / 5</p>
-                    <p>{{ review.body }}</p>
+                    <p class="review-body">{{ review.body }}</p>
                     <p><strong>Posté par :</strong> {{ review.user.username }}</p>
                     <p><strong>Date :</strong> {{ review.time_created|date:"d M Y H:i" }}</p>
                     {% if review.is_reply %}
-                        <p><strong>Type :</strong> Réponse à une Critique</p>
+                        {% if review.user == request.user %}
+                            <p><strong>Type :</strong> Ma Réponse à une Demande de Critique</p>
+                        {% elif request.user == review.ticket.user %}
+                            <p><strong>Type :</strong> Réponse à ma Demande de Critique</p>
+                        {% else %}
+                            <p><strong>Type :</strong> Réponse à une Demande de Critique</p>
+                        {% endif %}
                     {% else %}
-                        <p><strong>Type :</strong> Critique</p>
+                        {% if review.user == request.user %}
+                            <p><strong>Type :</strong> Ma Critique complète</p>
+                        {% else %}
+                            <p><strong>Type :</strong> Critique complète</p>
+                        {% endif %}
                     {% endif %}
+                
                     {# Si l'utilisateur est l'auteur de la critique, affiche les actions #}
                     {% if review.user == request.user %}
                         <div class="review-actions">
-                            <a href="{% url 'edit_review' review.id %}" class="btn btn-warning">Modifier</a>
-                            <form action="{% url 'delete_review' review.id %}" method="POST" style="display:inline;">
+                            <!-- Bouton "Modifier" de la critique en bleu (btn-primary) -->
+                            <a href="{% url 'edit_review' review.id %}" class="btn btn-primary">Modifier</a>
+                            <form action="{% url 'delete_review' review.id %}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?');" style="display:inline;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
@@ -57,12 +71,12 @@
         <p>Aucune critique pour ce ticket.</p>
     {% endif %}
 
-    {# Vérification pour afficher le bouton "Ajouter une Critique" #}
-    {% if ticket.user != request.user and not user_review %}
+    {# Vérification pour afficher le bouton "Ajouter une Critique" uniquement si aucune critique n'existe pour ce ticket #}
+    {% if ticket.user != request.user and not user_review and not reviews %}
         <p><a href="{% url 'add_review' %}?ticket_id={{ ticket.id }}" class="btn btn-primary">Ajouter une Critique</a></p>
     {% endif %}
     
-    <p><a href="{% url 'feed' %}">Retour au Flux</a></p>
+    <p class="return"><a href="{% url 'feed' %}">Retour au Flux</a></p>
     <p><a href="{% url 'posts' %}">Retour à mes Posts</a></p>  <!-- Lien ajouté ici -->
 </div>
 {% endblock %}
