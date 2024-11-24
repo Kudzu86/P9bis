@@ -4,7 +4,7 @@
 Cette application permet aux utilisateurs :
 - **De publier des critiques** de livres, d'articles, etc.
 - **De demander des critiques** en créant des billets.
-- **De répondre aux demandes** de critiques des autres utilisateurs.
+- **De répondre aux demandes de critiques** des autres utilisateurs.
 - **De consulter des critiques** publiées par d'autres utilisateurs.
 - **De suivre et de gérer les utilisateurs suivis** pour personnaliser son flux d'activités.
 
