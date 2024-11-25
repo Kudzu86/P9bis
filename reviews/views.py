@@ -25,40 +25,6 @@ def register_view(request):
     return render(request, 'register.html', {'form': form})
 
 
-def get_users_viewable_reviews(user):
-    """Retourne les critiques des utilisateurs suivis par l'utilisateur donné
-        et ses propres critiques."""
-    # Récupère les utilisateurs suivis par l'utilisateur donné
-    followed_users = UserFollows.objects.filter(user=user).values_list(
-        'followed_user', flat=True
-    )
-
-    # Obtenir les critiques des utilisateurs suivis et les critiques
-    # de l'utilisateur lui-même
-    reviews = Review.objects.filter(user__in=followed_users).union(
-        Review.objects.filter(user=user)
-    )
-
-    return reviews  # Retourne les critiques trouvées
-
-
-def get_users_viewable_tickets(user):
-    """Retourne les tickets des utilisateurs suivis par l'utilisateur donné
-        et ses propres tickets."""
-    # Récupère les utilisateurs suivis par l'utilisateur donné
-    followed_users = UserFollows.objects.filter(user=user).values_list(
-        'followed_user', flat=True
-    )
-
-    # Obtenir les tickets des utilisateurs suivis et les tickets
-    #  de l'utilisateur lui-même
-    tickets = Ticket.objects.filter(user__in=followed_users).union(
-        Ticket.objects.filter(user=user)
-    )
-
-    return tickets  # Retourne les tickets trouvés
-
-
 @login_required
 def feed(request):
     user = request.user

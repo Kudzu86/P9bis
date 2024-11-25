@@ -18,11 +18,13 @@ class CustomUserCreationForm(UserCreationForm):
     )
     
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'id': 'id_password1'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Choisissez votre mot de passe', 'id': 'id_password1'}),
+        label='Password'
     )
     
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmer le mot de passe', 'id': 'id_password2'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Ecrivez à nouveau votre mot de passe', 'id': 'id_password2'}),
+        label='Confirmer Password'
     )
 
     class Meta(UserCreationForm.Meta):
