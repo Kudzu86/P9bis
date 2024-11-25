@@ -55,7 +55,7 @@ Cette application offre une expérience simple et accessible, conforme aux direc
 1. **Cloner le repository GitHub** :
    ```
    git clone https://github.com/Kudzu86/P9bis/tree/master
-   cd mon-projet
+   cd mon_projet
    ```
 
 2. **Créer et activer un environnement virtuel** :
